@@ -1,4 +1,4 @@
-import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
+import { VerticalTimeline } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import ExperienceEntries from "./ExperienceEntries";
 import experiences from "../../data/experiences";
