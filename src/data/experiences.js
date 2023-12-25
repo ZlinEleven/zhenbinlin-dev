@@ -1,6 +1,6 @@
 import { MdOutlineWork } from "react-icons/md";
 
-const experiences = [
+let experiences = [
     {
         date: "Jun 2023 - Aug 2023",
         title: "Software Engineering Intern",

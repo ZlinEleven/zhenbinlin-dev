@@ -3,9 +3,9 @@ import avatar from '../assets/images/formal_profile_picture.jpg';
 import { FaRegArrowAltCircleRight } from 'react-icons/fa';
 import { Link } from 'react-scroll';
 
-const Home = () => {
+const About = () => {
     return (
-        <div name='home' className="w-full h-screen bg-[#0a192f] justify-center">
+        <div name='about' className="w-full h-screen bg-[#0a192f] justify-center">
             <div className='max-w-[1000px] mx-auto justify-center'>
                 <div className="flex h-full justify-center pt-[200px]">
                     <div className='px-5 sm:px-10 hover:scale-125 duration-500'>
@@ -29,4 +29,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default About;
