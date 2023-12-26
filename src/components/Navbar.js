@@ -59,24 +59,29 @@ const Navbar = () => {
 
 
             {/* Hamburger */}
-            <div onClick={handleClick} className='md:hidden z-10 py-10 cursor-pointer'>
+            <div onClick={handleClick} className='md:hidden z-10 py-8 cursor-pointer'>
                 {!nav ? <FaBars /> : <FaTimes />}
             </div>
 
             {/* Mobile menu */}
             <ul className={!nav ? 'hidden' : 'md:hidden absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center'}>
-                <li className='py-6 text-4xl'><Link onClick={handleClick} to="about" spy={true} smooth={true} offset={-100} duration={500}>About</Link></li>
+                {
+                    navbarTabs.map((tab, index) => {
+                        return <li className="my-6 text-4xl cursor-pointer"><Link onClick={handleClick} to={tab.id} spy={true} smooth={true} offset={tab.offset} duration={500}> {tab.name} </Link></li>
+                    })
+                }
+                {/* <li className='py-6 text-4xl'><Link onClick={handleClick} to="about" spy={true} smooth={true} offset={-100} duration={500}>About</Link><{/li>
                 <li className='py-6 text-4xl'>Education</li>
                 <li className='py-6 text-4xl'><Link onClick={handleClick} to="experience" spy={true} smooth={true} offset={-100} duration={500}>Experience</Link></li>
-                <li className='py-6 text-4xl'>Contact</li>
+                <li className='py-6 text-4xl'>Contact</li>} */}
             </ul>
 
             {/* Socials */}
-            <div className='hidden lg:flex fixed flex-col top-[35%] left-0 z-10'>
+            <div className='hidden md:flex fixed flex-col top-[35%] left-0 z-10'>
                 <ul>
-                    <SocialsEntry background='#146bc0' link='https://www.linkedin.com/in/zhenbin-lin/' text='LinkedIn' icon={<FaLinkedin size='30' />} />
-                    <SocialsEntry background='#333333' link='https://github.com/ZlinEleven' text='GitHub' icon={<FaGithub size='30' />} />
-                    <SocialsEntry background='#6fc2b0' link='https://drive.google.com/file/d/1JbtAwQlNt0Xo2QTBeJjw2I7yPyZuMwVt/view?usp=sharing' text='Resume' icon={<ImProfile size='30' />} />
+                    <SocialsEntry background="bg-[#146bc0]" link='https://www.linkedin.com/in/zhenbin-lin/' text='LinkedIn' icon={<FaLinkedin size='30' />} />
+                    <SocialsEntry background="bg-[#333333]" link='https://github.com/ZlinEleven' text='GitHub' icon={<FaGithub size='30' />} />
+                    <SocialsEntry background="bg-[#6fc2b0]" link='https://drive.google.com/file/d/1JbtAwQlNt0Xo2QTBeJjw2I7yPyZuMwVt/view?usp=sharing' text='Resume' icon={<ImProfile size='30' />} />
                 </ul>
             </div>
         </div>
