@@ -1,9 +1,10 @@
-import { FaBars, FaTimes, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { ImProfile } from "react-icons/im";
+import { FaBars, FaTimes } from 'react-icons/fa';
+
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-scroll';
 import SocialsEntry from './SocialsEntry';
 import navbarTabs from '../data/navbarTabs';
+import socials from '../data/socials';
 
 
 const Navbar = () => {
@@ -70,18 +71,16 @@ const Navbar = () => {
                         return <li className="my-6 text-4xl cursor-pointer"><Link onClick={handleClick} to={tab.id} spy={true} smooth={true} offset={tab.offset} duration={500}> {tab.name} </Link></li>
                     })
                 }
-                {/* <li className='py-6 text-4xl'><Link onClick={handleClick} to="about" spy={true} smooth={true} offset={-100} duration={500}>About</Link><{/li>
-                <li className='py-6 text-4xl'>Education</li>
-                <li className='py-6 text-4xl'><Link onClick={handleClick} to="experience" spy={true} smooth={true} offset={-100} duration={500}>Experience</Link></li>
-                <li className='py-6 text-4xl'>Contact</li>} */}
             </ul>
 
             {/* Socials */}
             <div className='hidden md:flex fixed flex-col top-[35%] left-0 z-10'>
                 <ul>
-                    <SocialsEntry background="bg-[#146bc0]" link='https://www.linkedin.com/in/zhenbin-lin/' text='LinkedIn' icon={<FaLinkedin size='30' />} />
-                    <SocialsEntry background="bg-[#333333]" link='https://github.com/ZlinEleven' text='GitHub' icon={<FaGithub size='30' />} />
-                    <SocialsEntry background="bg-[#6fc2b0]" link='https://drive.google.com/file/d/1JbtAwQlNt0Xo2QTBeJjw2I7yPyZuMwVt/view?usp=sharing' text='Resume' icon={<ImProfile size='30' />} />
+                    {
+                        socials.map((social, index) => {
+                            return <SocialsEntry background={social.background} link={social.link} text={social.name} icon={social.icon}/>
+                        })
+                    }
                 </ul>
             </div>
         </div>
