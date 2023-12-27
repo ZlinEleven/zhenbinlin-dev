@@ -10,6 +10,11 @@ let navbarTabs = [
       offset: 0,
     },
     {
+      id: "skills",
+      name: "Skills",
+      offset: -85,
+    },
+    {
       id: "experience",
       name: "Experience",
       offset: -85,

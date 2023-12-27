@@ -31,7 +31,7 @@ const Navbar = () => {
     }, [activeTabIndex]);
 
     return (
-        <div className="fixed bg-[#0a192f] md:bg-transparent  w-full z-10 flex justify-center items-center px-4 text-white">
+        <div className="fixed bg-[#0a192f] md:bg-transparent  w-full z-20 flex justify-center items-center px-4 text-white">
             {/* Desktop menu */}
             <div className='hidden md:flex w-[550px] py-4 rounded-b-3xl bg-[#0a192f] mt-[-50px] hover:mt-[0px] duration-500'>
                 <div className="hidden md:flex md:w-[500px] mx-auto justify-between h-12 bg-[#cfd1d4] px-4 text-gray-500 rounded-3xl backdrop-blur-sm">

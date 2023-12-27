@@ -21,7 +21,7 @@ const Experience = () => {
 
     return (
         <div name="experience">
-            <h1 className="w-full flex justify-center text-3xl ">My Experience</h1>
+            <h1 className="w-full flex justify-center text-4xl font-bold text-gray-700">My Experience</h1>
             <VerticalTimeline lineColor="#8c8c8c" >
                 {renderExp()}
             </VerticalTimeline>
