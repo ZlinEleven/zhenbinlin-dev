@@ -67,8 +67,8 @@ const Navbar = () => {
             {/* Mobile menu */}
             <ul className={!nav ? 'hidden' : 'md:hidden absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center'}>
                 {
-                    navbarTabs.map((tab, index) => {
-                        return <li className="my-6 text-4xl cursor-pointer"><Link onClick={handleClick} to={tab.id} spy={true} smooth={true} offset={tab.offset} duration={500}> {tab.name} </Link></li>
+                    navbarTabs.map((tab) => {
+                        return <li key={tab.id} className="my-6 text-4xl cursor-pointer"><Link onClick={handleClick} to={tab.id} spy={true} smooth={true} offset={tab.offset} duration={500}> {tab.name} </Link></li>
                     })
                 }
             </ul>
@@ -77,8 +77,8 @@ const Navbar = () => {
             <div className='hidden md:flex fixed flex-col top-[35%] left-0 z-10'>
                 <ul>
                     {
-                        socials.map((social, index) => {
-                            return <SocialsEntry background={social.background} link={social.link} text={social.name} icon={social.icon}/>
+                        socials.map((social) => {
+                            return <SocialsEntry key={social.name} background={social.background} link={social.link} text={social.name} icon={social.icon}/>
                         })
                     }
                 </ul>

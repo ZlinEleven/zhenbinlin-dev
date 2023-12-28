@@ -7,7 +7,7 @@ let navbarTabs = [
     {
       id: "education",
       name: "Education",
-      offset: 0,
+      offset: -85,
     },
     {
       id: "skills",

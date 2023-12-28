@@ -9,6 +9,7 @@ const Experience = () => {
         for (let i = 0; i < experiences.length; i++) {
             const exp = experiences[i];
             expList.push(<ExperienceEntries
+                key={exp.title}
                 date={exp.date}
                 title={exp.title}
                 role={exp.role}

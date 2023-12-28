@@ -1,14 +1,12 @@
 import React from 'react'
 
-// m-[0.675rem] md:mb-[2.5rem]
-
 const SkillsInfoCard = ({ skills }) => {
     return (
         <div className='grid grid-cols-3 md:gap-10 mt-[1.25rem]'>
             {
                 skills.map((skill) => {
                     return (
-                        <div className='group mt-3 md:mt-0 mb-6 md:mb-0'>
+                        <div key={skill.name} className='group mt-3 md:mt-0 mb-6 md:mb-0'>
                             <div className="flex flex-col relative items-center justify-center 
                         z-10 group-hover:translate-y-[-35px]
                         w-[105px] md:w-[160px] lg:w-[210px] h-[90px] md:h-[135px] lg:h-[180px] mx-auto
