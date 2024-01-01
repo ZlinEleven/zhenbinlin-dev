@@ -6,7 +6,7 @@ const CourseCard = ({ title, courseNum, grade, desc }) => {
 
     return (
         <div className='flex flex-col'>
-            <div className='flex border-t-2 border-b-2 items-center border-gray-300 hover:bg-gray-700 hover:text-white duration-300 py-3'>
+            <div className={`flex border-t-2 border-b-2 items-center border-gray-300 ${grade === "In progress..." ? "text-yellow-700" : "text-green-700"} hover:bg-gray-700 hover:text-white duration-300 py-3`}>
                 <p className='pl-4 w-[136px]'>{courseNum}</p>
                 <p className='w-[250px]'>{title}</p>
                 <p className='w-[110px]'>{grade}</p>

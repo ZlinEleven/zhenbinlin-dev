@@ -38,30 +38,6 @@ const Education = () => {
                             return <CourseCard key={course.title} title={course.title} courseNum={course.courseNum} grade={course.grade} desc={course.desc} />
                         })
                     }
-
-                    {/* <table className='w-full table-auto text-left'>
-                        <thead>
-                            <tr>
-                                <th className='pl-4'>
-                                    Course Name
-                                </th>
-                                <th>
-                                    Course Number
-                                </th>
-                                <th>
-                                    Status
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                courses.map((course) => {
-                                    return <CourseCard key={course.title} title={course.title} courseNum={course.courseNum} grade={course.grade} desc={course.desc} toggleDesc={toggleDesc} />
-                                })
-                            }
-                        </tbody>
-                    </table> */}
                 </div>
             </div>
         </div>
