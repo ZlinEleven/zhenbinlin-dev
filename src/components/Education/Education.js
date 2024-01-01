@@ -10,9 +10,9 @@ const Education = () => {
     return (
         <div name="education" className='flex flex-col items-center my-8'>
             <h1 className=' text-4xl font-bold text-gray-700 mb-[1.75rem] md:mb-[2rem]'>My Education</h1>
-            <div className='flex flex-col w-[40rem] bg-gray-100 rounded-xl border-gray-300 border-[2px]'>
+            <div className='flex flex-col w-[95vw] md:w-[40rem] bg-gray-100 rounded-xl border-gray-300 border-[2px]'>
                 <div className='flex px-16 py-4 justify-center'>
-                    <img src={sbuLogo} alt='sbu-logo' className='w-28 mr-4'></img>
+                    <img src={sbuLogo} alt='sbu-logo' className='w-28 h-28 mr-4'></img>
                     <div className='flex flex-col justify-between font-bold'>
                         <p className='text-xl'>Stony Brook University</p>
                         <p className='text-lg'>B.S, Computer Science</p>
@@ -29,8 +29,8 @@ const Education = () => {
                 <div className={`${coursework ? "flex flex-col" : "hidden"} border-t-[2px] border-gray-300`}>
                     {/* Headers */}
                     <div className='flex font-bold text-sm py-2 pl-4 bg-gray-400'>
-                        <p className='w-[120px]'>Course Code</p>
-                        <p className='w-[250px]'>Course Name</p>
+                        <p className='w-[80px] md:w-[120px]'>Course Code</p>
+                        <p className='w-[200px] md:w-[250px]'>Course Name</p>
                         <p>Status</p>
                     </div>
                     {

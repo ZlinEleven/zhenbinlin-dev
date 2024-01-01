@@ -17,7 +17,7 @@ const About = () => {
                         <h2 className='text-2xl sm:text-3xl py-4 font-bold max-w-[650px] text-[#8892b0] hover:scale-110 duration-500'>I am a sophomore at Stony Brook University and an aspiring software engineer.</h2>
                     </div>
                 </div>
-                <Link to="education" spy={true} smooth={true} offset={-30} duration={500}>
+                <Link to="education" spy={true} smooth={true} offset={-85} duration={500}>
                     <div className='max-w-[1000px] mx-auto flex justify-center'>
                         <button className='w-10/12 hover:w-11/12 text-white group border-2 px-6 py-3 my-6 flex items-center justify-center hover:bg-pink-600 duration-700'>Learn more
                             <span className='group-hover:rotate-[90deg] group-hover:translate-y-[-5px] group-hover:translate-x-[5px] duration-700'><FaRegArrowAltCircleRight className='ml-3' size={30} /></span>
