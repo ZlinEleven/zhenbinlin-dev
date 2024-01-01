@@ -6,11 +6,9 @@ const Contact = () => {
       <form action="https://getform.io/f/77d35fe9-c101-4db8-8498-a98838ad1e30" method='POST' className='flex flex-col max-w-[600px] w-full'>
         <div className='w-full flex flex-col items-center'>
           <p className='text-4xl font-bold text-gray-700'>Contact Me</p>
-          <div className='flex flex-col md:flex-row text-gray-700 py-4'>
-            <p>Feel free to contact me at&nbsp;</p>
-            <u>zhenbin2004@gmail.com</u>
-            <p>&nbsp;or submit the form below</p>
-            </div>
+          <div className='flex md:flex-row text-gray-700 py-4'>
+            <p className='text-center'>Feel free to contact me at <u>zhenbin2004@gmail.com</u> or submit the form below</p>
+          </div>
         </div>
         <input className='bg-gray-100 p-3 my-3 rounded-md border border-gray-300' type='text' placeholder='Email' name='email' />
         <textarea className='bg-gray-100 p-3 my-3 rounded-md border border-gray-300' placeholder='Your message' rows='7' name='message' />
