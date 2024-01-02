@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import { FaAngleDown } from 'react-icons/fa'; 
 
 const CourseCard = ({ title, courseNum, grade, desc }) => {
     const [descOpen, setdescOpen] = useState(false);
@@ -6,11 +7,12 @@ const CourseCard = ({ title, courseNum, grade, desc }) => {
 
     return (
         <div className='flex flex-col'>
-            <div className={`flex border-t-2 border-b-2 border-gray-300 items-center ${grade === "In progress..." ? "text-yellow-700" : "text-green-700"} hover:bg-gray-700 hover:text-white duration-300 py-3`}>
-                <p className='pl-4 w-[95px] md:w-[136px]'>{courseNum}</p>
-                <p className='w-[200px] md:w-[250px] text-ellipsis'>{title}</p>
-                <p className='w-[110px] text-ellipsis'>{grade}</p>
-                <p className='cursor-pointer border-2 border-black rounded-full p-2' onClick={toggleDesc}>Description</p>
+            <div className={`flex border-t-2 border-b-2 px-4 border-gray-300 items-center ${grade === "In progress..." ? "text-yellow-700" : "text-green-700"} hover:bg-gray-700 hover:text-white duration-300 py-3`}>
+                <p className='absolute'>{courseNum}</p>
+                <p className='ml-[25%] md:ml-[20%] w-[25%] md:w-[350px] truncate'>{title}</p>
+                <p className='ml-[5%] w-[30%]'>{grade}</p>
+                <p className='hidden md:flex cursor-pointer border-2 border-black rounded-full p-2' onClick={toggleDesc}>Description</p>
+                <p className={`flex md:hidden cursor-pointer border-2 border-black rounded-full p-2 ${descOpen ? "rotate-180" : "rotate-0"} duration-300`} onClick={toggleDesc}><FaAngleDown/></p>
             </div>
             <div className={`${descOpen ? "flex" : "hidden"} p-4`}>
                 <p>{desc}</p>

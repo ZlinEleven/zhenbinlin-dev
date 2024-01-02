@@ -11,7 +11,7 @@ const About = () => {
                     <div className='px-5 sm:px-10 hover:scale-125 duration-500'>
                         <img className='size-[175px] sm:size-[200px]' src={avatar} alt='profile' style={{ borderRadius: '50%', border: '5px solid #ffffff', objectFit: 'cover' }} />
                     </div>
-                    <div>
+                    <div className='pr-2'>
                         <p className='text-xl text-pink-600 hover:scale-110 duration-500'>Hi, my name is</p>
                         <h1 className='text-4xl sm:text-7xl font-bold text-[#ccd6f6] hover:scale-110 duration-500'>Zhenbin Lin</h1>
                         <h2 className='text-2xl sm:text-3xl py-4 font-bold max-w-[650px] text-[#8892b0] hover:scale-110 duration-500'>I am a sophomore at Stony Brook University and an aspiring software engineer.</h2>

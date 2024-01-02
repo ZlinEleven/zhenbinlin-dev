@@ -28,10 +28,10 @@ const Education = () => {
                 </button>
                 <div className={`${coursework ? "flex flex-col" : "hidden"} border-t-[2px] border-gray-300`}>
                     {/* Headers */}
-                    <div className='flex font-bold text-sm py-2 pl-4 bg-gray-400'>
-                        <p className='w-[80px] md:w-[120px]'>Course Code</p>
-                        <p className='w-[200px] md:w-[250px]'>Course Name</p>
-                        <p>Status</p>
+                    <div className='flex font-bold text-sm py-3 px-4 bg-gray-400 items-center'>
+                        <p className='absolute w-[20%]'> Course Code</p>
+                        <p className='ml-[25%] md:ml-[20%] w-[25%] md:w-[235px]'>Course Name</p>
+                        <p className='ml-[5%]'>Status</p>
                     </div>
                     {
                         courses.map((course) => {
