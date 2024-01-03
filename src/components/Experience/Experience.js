@@ -4,27 +4,22 @@ import ExperienceEntries from "./ExperienceEntries";
 import experiences from "../../data/experiences";
 
 const Experience = () => {
-    const renderExp = () => {
-        const expList = [];
-        for (let i = 0; i < experiences.length; i++) {
-            const exp = experiences[i];
-            expList.push(<ExperienceEntries
-                key={exp.title}
-                date={exp.date}
-                title={exp.title}
-                role={exp.role}
-                desc={exp.desc}
-                icon={exp.icon}
-            ></ExperienceEntries>);
-        }
-        return expList;
-    }
-
     return (
         <div name="experience">
             <h1 className="w-full flex justify-center text-4xl font-bold text-gray-700 mt-8">My Experience</h1>
             <VerticalTimeline lineColor="#8c8c8c" >
-                {renderExp()}
+                {/* {renderExp()} */}
+                {
+                    experiences.map((experience) => {
+                        return <ExperienceEntries 
+                                key={experience.title}
+                                date={experience.date}
+                                title={experience.title}
+                                role={experience.role}
+                                desc={experience.desc}
+                                icon={experience.icon}/>    
+                    })
+                }
             </VerticalTimeline>
         </div>
     );
