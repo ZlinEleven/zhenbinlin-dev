@@ -18,6 +18,10 @@ import androidStudioIcon from '../assets/images/android-studio-icon.svg'
 import firebaseIcon from '../assets/images/firebase-icon.svg';
 import googleCloudIcon from '../assets/images/google-cloud-icon.svg';
 import postmanIcon from '../assets/images/postman-icon.svg';
+import htmlIcon from '../assets/images/html-icon.svg';
+import cssIcon from '../assets/images/css-icon.svg';
+import mongoDBIcon from '../assets/images/mongodb-icon.svg';
+import githubIcon from '../assets/images/github-icon.svg';
 
 let skills = [
     {
@@ -37,12 +41,12 @@ let skills = [
             {
                 name: "Flutter & Dart",
                 icon: flutterIcon,
-                percentage: 60,
+                percentage: 50,
             },
             {
                 name: "Java",
                 icon: javaIcon,
-                percentage: 60,
+                percentage: 50,
             },
 
             {
@@ -53,12 +57,12 @@ let skills = [
             {
                 name: "Javascript",
                 icon: javascriptIcon,
-                percentage: 40,
+                percentage: 80,
             },
             {
                 name: "Typescript",
                 icon: typescriptIcon,
-                percentage: 30,
+                percentage: 70,
             },
         ]
     },
@@ -69,17 +73,17 @@ let skills = [
             {
                 name: "React",
                 icon: reactIcon,
-                percentage: 60,
+                percentage: 70,
             },
             {
                 name: "Tailwindcss",
                 icon: tailwindIcon,
-                percentage: 60,
+                percentage: 70,
             },
             {
                 name: "Express",
                 icon: expressIcon,
-                percentage: 30,
+                percentage: 60,
             }, 
             {
                 name: "Next",
@@ -89,6 +93,21 @@ let skills = [
             {
                 name: "Node.js",
                 icon: nodejsIcon,
+                percentage: 40,
+            },
+            {
+                name: "HTML",
+                icon: htmlIcon,
+                percentage: 80,
+            },
+            {
+                name: "CSS",
+                icon: cssIcon,
+                percentage: 60,
+            },
+            {
+                name: "MongoDB",
+                icon: mongoDBIcon,
                 percentage: 30,
             },
         ]
@@ -98,24 +117,29 @@ let skills = [
         icon: toolsIcon,
         skills: [
             {
+                name: "GitHub",
+                icon: githubIcon,
+                percentage: 65,
+            },
+            {
                 name: "Git",
                 icon: gitIcon,
-                percentage: 70,
+                percentage: 60,
             },
             {
                 name: "Firebase",
                 icon: firebaseIcon,
-                percentage: 70,
+                percentage: 50,
             },
             {
                 name: "GCP",
                 icon: googleCloudIcon,
-                percentage: 60,
+                percentage: 40,
             },
             {
                 name: "Android Studio",
                 icon: androidStudioIcon,
-                percentage: 50,
+                percentage: 40,
             },
             {
                 name: "Postman",
@@ -125,5 +149,12 @@ let skills = [
         ]
     },
 ]
+
+skills.forEach((skillCategory) => {
+    skillCategory.skills.sort((a, b) => {
+        console.log()
+        return b.percentage - a.percentage
+    })
+})
 
 export default skills;

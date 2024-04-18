@@ -11,12 +11,12 @@ let courses = [
         grade: "In progress...",
         desc: "Introduction to systematic design, development and testing of software systems, including event-driven and Web programming, information management, databases, principles and practices for secure computing, and version control. Students apply these skills in the construction of large, robust programs."
     },
-    {
-        title: "Finite Mathematical Structures",
-        courseNum: "AMS301",
-        grade: "In progress...",
-        desc: "An introduction to graph theory and combinatorial analysis. The emphasis is on solving applied problems rather than on theorems and proofs. Techniques used in problem solving include generating functions, recurrence relations, and network flows. This course develops the type of mathematical thinking that is fundamental to computer science and operations research."
-    },
+    // {
+    //     title: "Finite Mathematical Structures",
+    //     courseNum: "AMS301",
+    //     grade: "In progress...",
+    //     desc: "An introduction to graph theory and combinatorial analysis. The emphasis is on solving applied problems rather than on theorems and proofs. Techniques used in problem solving include generating functions, recurrence relations, and network flows. This course develops the type of mathematical thinking that is fundamental to computer science and operations research."
+    // },
     {
         title: "System Fundamentals",
         courseNum: "CSE320",
