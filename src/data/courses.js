@@ -1,22 +1,28 @@
 let courses = [
     {
+        title: "Cloud Computing",
+        courseNum: "CSE356",
+        grade: "In progress...",
+        desc: "Creating online services capable of handling millions of users requires a different mindset compared to traditional software development and deployment. Rather than building monolithic software packages from the ground up, bringing up modern online services calls for architecting systems by gluing together mature existing technologies deployed across many unreliable servers, working in concert to provide high-availability robust services. In this course, students will be exposed to the concepts and technologies behind deploying and scaling online services on the computing resources available in modern datacenters."
+    },
+    {
+        title: "Statistical Methods for Data Science",
+        courseNum: "CSE357",
+        grade: "In progress...",
+        desc: "This interdisciplinary course introduces the mathematical concepts required to interpret results and subsequently draw conclusions from data in an applied manner. The course presents different techniques for applied statistical inference and data analysis, including their implementation in Python, such as parameter and distribution estimators, hypothesis testing, Bayesian inference, and likelihood."
+    },
+    {
         title: "Natural Language Processing",
         courseNum: "CSE354",
-        grade: "In progress...",
+        grade: "A-",
         desc: "Natural language processing techniques power many intelligent language based applications. This course will introduce basic language analysis tasks such as language modeling and syntactic analysis, as well as core applications such as text classification, information extraction, question answering, and machine translation. The course will cover relevant algorithms, machine learning solutions, and evaluation methodologies."
     },
     {
         title: "Fundamentals of Software Development",
         courseNum: "CSE316",
-        grade: "In progress...",
+        grade: "A",
         desc: "Introduction to systematic design, development and testing of software systems, including event-driven and Web programming, information management, databases, principles and practices for secure computing, and version control. Students apply these skills in the construction of large, robust programs."
     },
-    // {
-    //     title: "Finite Mathematical Structures",
-    //     courseNum: "AMS301",
-    //     grade: "In progress...",
-    //     desc: "An introduction to graph theory and combinatorial analysis. The emphasis is on solving applied problems rather than on theorems and proofs. Techniques used in problem solving include generating functions, recurrence relations, and network flows. This course develops the type of mathematical thinking that is fundamental to computer science and operations research."
-    // },
     {
         title: "System Fundamentals",
         courseNum: "CSE320",

@@ -17,7 +17,7 @@ const Education = () => {
                         <p className='text-xl'>Stony Brook University</p>
                         <p className='text-lg'>B.S, Computer Science</p>
                         <p>Expected Graduation: May 2026</p>
-                        <p>GPA: 3.87/4.0</p>
+                        <p>GPA: 3.88/4.0</p>
                     </div>
                 </div>
                 <button
