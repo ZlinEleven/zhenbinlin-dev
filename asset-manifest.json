@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0c76b370.css",
-    "main.js": "/static/js/main.d9b9df14.js",
+    "main.css": "/static/css/main.32322db6.css",
+    "main.js": "/static/js/main.c4f530c1.js",
     "static/media/formal_profile_picture.jpg": "/static/media/formal_profile_picture.d7a05c5053707a5b0068.jpg",
     "static/media/sbu-logo.png": "/static/media/sbu-logo.6434af85b2c64bd0f0ad.png",
     "static/media/express-icon.svg": "/static/media/express-icon.716b8a44a09ac9d9911de1075287c56f.svg",
@@ -26,11 +26,11 @@
     "static/media/html-icon.svg": "/static/media/html-icon.f318c8b1d5945fa9adc827ae94849cb1.svg",
     "static/media/javascript-icon.svg": "/static/media/javascript-icon.b879f838faf1cb951d1c2230fd933a39.svg",
     "static/media/flutter-icon.svg": "/static/media/flutter-icon.05e2f153953352601088319005935884.svg",
-    "main.0c76b370.css.map": "/static/css/main.0c76b370.css.map",
-    "main.d9b9df14.js.map": "/static/js/main.d9b9df14.js.map"
+    "main.32322db6.css.map": "/static/css/main.32322db6.css.map",
+    "main.c4f530c1.js.map": "/static/js/main.c4f530c1.js.map"
   },
   "entrypoints": [
-    "static/css/main.0c76b370.css",
-    "static/js/main.d9b9df14.js"
+    "static/css/main.32322db6.css",
+    "static/js/main.c4f530c1.js"
   ]
 }
