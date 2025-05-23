@@ -5,6 +5,20 @@ import { FaRobot } from "react-icons/fa6";
 
 let experiences = [
     {
+        date: "Jun 2025 - Present",
+        title: "Software Engineering Intern",
+        role: "Capital One - Internship",
+        desc: "Incoming Intern",
+        icon: <MdOutlineWork />
+    },
+    {
+        date: "Jan 2025 - May 2025",
+        title: "CSE316 Teaching Assistant",
+        role: "Stony Brook University - Externship",
+        desc: "Facilitated comprehension of fundamental web development concepts by conducting weekly office hours, offering personalized assistance to over 160 students. Assisted in the development of course materials by reviewing and providing feedback on homework assignments, recitation materials, and exams. Collaborated with course instructors to address student inquiries and concerns promptly, effectively conveying technical concepts and troubleshooting programming challenges.",
+        icon: <FaChalkboardTeacher />
+    },
+    {
         date: "Jun 2024 - Aug 2024",
         title: "Software Engineering Intern",
         role: "Angi - Internship",
@@ -13,14 +27,14 @@ let experiences = [
     },
     {
         date: "Jan 2024 - Present",
-        title: "Academic Technology Services Intern",
-        role: "SBU Division of Information Technology - Internship",
+        title: "Academic Technology Services Technician",
+        role: "SBU Division of Information Technology",
         desc: "Provided technical support to over 50,000 courses offered at Stony Brook University through phone calls, emails, and chat bot conversations to resolve academic technology issues. Designed and presented instructional workshops to 500+ faculty, staff, and students on various academic technologies tools and services under the DoIT management system. Created promotional materials for print, web, and social media on services funded and managed by the DoIT department.",
         icon: <MdOutlineWork />
     },
     {
         date: "Jan 2024 - May 2024",
-        title: "Teaching Assistant",
+        title: "CSE220 Teaching Assistant",
         role: "Stony Brook University - Externship",
         desc: "Facilitated comprehension of systems-level programming concepts by conducting weekly office hours, offering personalized assistance to over 160 students. Assisted in the development of course materials by reviewing and providing feedback on homework assignments, recitation materials, and exams. Collaborated with course instructors to address student inquiries and concerns promptly, effectively conveying technical concepts and troubleshooting programming challenges.",
         icon: <FaChalkboardTeacher />
