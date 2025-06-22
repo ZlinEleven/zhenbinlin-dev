@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import TradeRow from './TradeRow'
 import NewTradeModal from './NewTradeModal'
 import CloseTradeModal from './CloseTradeModal'
+import StatsDashboard from './StatsDashboard'
+import { CustomTable } from './CustomTable'
 
 const getCurrentDate = () => {
     const today = new Date();
@@ -27,6 +29,7 @@ const WheelTracker = () => {
     const [trades, setTrades] = useState([]);
     const [showNewTradeModal, setShowNewTradeModal] = useState(false);
     const [showCloseTradeModal, setShowCloseTradeModal] = useState(false);
+    const [showDashboard, setShowDashboard] = useState(true);
     const [newTrade, setNewTrade] = useState(initialTrade);
     const [tradeToClose, setTradeToClose] = useState(null);
 
@@ -42,8 +45,7 @@ const WheelTracker = () => {
         };
 
         // console.log(completeTrade);
-        const status = (<div>Open (<button className='bg-gray-700 text-white rounded-md p-2'>Close trade</button>)</div>);
-        completeTrade.status = status;
+        completeTrade.status = 'Open';
         setTrades([...trades, completeTrade]);
         setNewTrade(initialTrade);
         setShowNewTradeModal(false);
@@ -54,9 +56,27 @@ const WheelTracker = () => {
         setShowCloseTradeModal(true);
     };
 
-    const onCloseTrade = (updatedTrade) => {
+    const onCloseTrade = (updatedTrade, rolledPosition = null) => {
         const newTrades = [...trades];
+
+        // Update the original trade
         newTrades[updatedTrade.originalIndex] = updatedTrade;
+
+        // If this was a roll, add the new position
+        if (rolledPosition) {
+            const newPositionIndex = newTrades.length;
+
+            // Update the parent trade with the child reference
+            newTrades[updatedTrade.originalIndex].childTradeId = newPositionIndex;
+
+            // Add the new rolled position
+            newTrades.push({
+                ...rolledPosition,
+                originalIndex: newPositionIndex,
+                parentTradeId: updatedTrade.originalIndex
+            });
+        }
+
         setTrades(newTrades);
     };
 
@@ -81,10 +101,69 @@ const WheelTracker = () => {
             roi: parseFloat(roi)
         };
     }
-    
+
+    // Organize trades hierarchically for display
+    const organizeTradesHierarchically = (trades) => {
+        const organized = [];
+        const processed = new Set();
+
+        trades.forEach((trade, index) => {
+            // Skip if already processed as a child
+            if (processed.has(index)) return;
+
+            // Add parent trade
+            organized.push({
+                ...trade,
+                originalIndex: index,
+                isChild: false,
+                parentIndex: null
+            });
+
+            // Get all children if this trade has a child (was rolled)
+            while (trade.childTradeId !== undefined && trade.childTradeId !== 'pending') {
+                const childTrade = trades[trade.childTradeId];
+                if (childTrade) {
+                    organized.push({
+                        ...childTrade,
+                        originalIndex: trade.childTradeId,
+                        isChild: true,
+                        parentIndex: index
+                    });
+                    processed.add(trade.childTradeId);
+                }
+
+                trade = childTrade;
+            }
+        });
+
+        return organized;
+    };
+
+    const organizedTrades = organizeTradesHierarchically(trades);
+
     return (
         <div className="p-4">
-            <h2 className="text-xl font-bold mb-4">Wheel Strategy Options Tracker</h2>
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Wheel Strategy Options Tracker</h2>
+                <button
+                    onClick={() => setShowDashboard(!showDashboard)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center space-x-2"
+                >
+                    <span>{showDashboard ? 'Hide' : 'Show'} Dashboard</span>
+                    <svg
+                        className={`w-4 h-4 transition-transform ${showDashboard ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            </div>
+
+            {/* Stats Dashboard */}
+            {showDashboard && <StatsDashboard trades={trades} />}
+
             {/* Modal trigger */}
             <button
                 onClick={() => setShowNewTradeModal(true)}
@@ -94,28 +173,23 @@ const WheelTracker = () => {
             </button>
 
             {/* Trade Table */}
-            <table className="w-full border border-collapse">
-                <thead>
-                    <tr className="bg-gray-100">
-                        {[
-                            'Open Date', 'Type', 'Ticker', 'QTY', 'Strike', 'Exp. Date', 'Credit ($)',
-                            'Status', 'Close Date', 'Debit ($)', 'Profit/Loss ($)', 'ROI'
-                        ].map((heading) => (
-                            <th key={heading} className="border p-2">{heading}</th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {trades.map((trade, index) => (
-                        <TradeRow
-                            key={index}
-                            trade={trade}
-                            index={index}
-                            onCloseTrade={handleCloseTrade}
-                        />
-                    ))}
-                </tbody>
-            </table>
+            <CustomTable
+                headers={[
+                    'Open Date', 'Type', 'Ticker', 'QTY', 'Strike', 'Exp. Date', 'Credit ($)',
+                    'Status', 'Close Date', 'Debit ($)', 'Profit/Loss ($)', 'ROI'
+                ]}
+            >
+                {organizedTrades.map((trade, displayIndex) => (
+                    <TradeRow
+                        key={trade.originalIndex}
+                        trade={trade}
+                        index={trade.originalIndex}
+                        onCloseTrade={handleCloseTrade}
+                        isChild={trade.isChild}
+                        parentIndex={trade.parentIndex}
+                    />
+                ))}
+            </CustomTable>
 
             {/* New Trade Modal */}
             <NewTradeModal
@@ -132,6 +206,7 @@ const WheelTracker = () => {
                 setShowCloseTradeModal={setShowCloseTradeModal}
                 tradeToClose={tradeToClose}
                 onCloseTrade={onCloseTrade}
+                calculateProfitLossAndROI={calculateProfitLossAndROI}
             />
         </div>
     );
