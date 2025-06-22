@@ -65,7 +65,10 @@ const fallbackTickers = [
     'LVMUY', 'KER.PA', 'LUX', 'ULTA', 'SBUX', 'NKE', 'UA', 'LULU', 'SKX', 'CROX', 'DECK', 'VFC', 'GPS', 'LB', 'URBN', 'ANF', 'AEO', 'BKE', 'ZUMZ', 'HIBB',
     
     // Home & Garden
-    'HD', 'LOW', 'TGT', 'WMT', 'COST', 'TJX', 'ROST', 'DG', 'DLTR', 'BURL', 'FIVE', 'OLLI', 'BIG'
+    'HD', 'LOW', 'TGT', 'WMT', 'COST', 'TJX', 'ROST', 'DG', 'DLTR', 'BURL', 'FIVE', 'OLLI', 'BIG',
+
+    // Other
+    'SOFI'
 ];
 
 export { fallbackTickers };

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { fallbackTickers } from './data/fallbackTickers'
+import React, { useState } from 'react'
+import TradeRow from './TradeRow'
+import NewTradeModal from './NewTradeModal'
+import CloseTradeModal from './CloseTradeModal'
 
 const getCurrentDate = () => {
     const today = new Date();
@@ -24,168 +26,62 @@ const initialTrade = {
 const WheelTracker = () => {
     const [trades, setTrades] = useState([]);
     const [showNewTradeModal, setShowNewTradeModal] = useState(false);
+    const [showCloseTradeModal, setShowCloseTradeModal] = useState(false);
     const [newTrade, setNewTrade] = useState(initialTrade);
-
-    // Ticker autocomplete
-    const [tickerSuggestions, setTickerSuggestions] = useState([]);
-    const [showTickerDropdown, setShowTickerDropdown] = useState(false);
-    const [allTickers, setAllTickers] = useState(fallbackTickers);
-    const [isLoadingTickers, setIsLoadingTickers] = useState(false);
-    const [selectedTickerIndex, setSelectedTickerIndex] = useState(-1);
-
-    // Fetch tickers from API on component mount
-    useEffect(() => {
-        fetchTickers();
-    }, []);
-
-    // Reset selected index when suggestions change
-    useEffect(() => {
-        setSelectedTickerIndex(-1);
-    }, [tickerSuggestions]);
-
-    const fetchTickers = async () => {
-        setIsLoadingTickers(true);
-        try {
-            // Using Alpha Vantage API for stock symbols
-            // You can get a free API key from https://www.alphavantage.co/support/#api-key
-            const response = await fetch('https://www.alphavantage.co/query?function=LISTING_STATUS&apikey=U7Y9TRCA9Q1GTFKS');
-            const csvText = await response.text();
-
-            // Parse CSV data
-            const lines = csvText.split('\n');
-            const tickers = [];
-
-            // Skip header row and process each line
-            for (let i = 1; i < lines.length && tickers.length < 1001; i++) {
-                if (lines[i].trim()) {
-                    const values = lines[i].split(',');
-                    console.log(values);
-                    const symbol = values[0]?.replace(/"/g, ''); // Remove quotes
-                    console.log(symbol);
-                    const status = values[4]?.replace(/"/g, ''); // Status is in 5th column
-                    const assetType = values[3]?.replace(/"/g, ''); // Asset type is in 4th
-                    const exchange = values[2]?.replace(/"/g, ''); // Exchange is in 3rd column
-
-                    console.log(symbol, status, assetType, exchange);
-                    if (symbol && status === 'Active' && assetType === 'Stock' && ['NASDAQ', 'NYSE', 'AMEX', 'OTC', 'BATS'].includes(exchange)) {
-                        tickers.push(symbol);
-                    }
-                }
-            }
-
-            if (tickers.length > 0) {
-                setAllTickers(tickers);
-                console.log(`Loaded ${tickers.length} tickers from API`);
-            } else {
-                // If no tickers found, use fallback
-                console.log('No tickers found, using fallback');
-                setAllTickers(fallbackTickers);
-            }
-        } catch (error) {
-            console.error('Error fetching tickers:', error);
-            // Use fallback tickers on error
-            setAllTickers(fallbackTickers);
-        } finally {
-            setIsLoadingTickers(false);
-        }
-    };
-
-    const handleChange = (field, value) => {
-        setNewTrade({ ...newTrade, [field]: value });
-
-        // Handle ticker autocomplete
-        if (field === 'ticker') {
-            const filtered = allTickers.filter(ticker =>
-                ticker.toLowerCase().includes(value.toLowerCase())
-            ).slice(0, 5);
-            setTickerSuggestions(filtered);
-            setShowTickerDropdown(true);
-        }
-    }
-
-    const selectTicker = (ticker) => {
-        setNewTrade({ ...newTrade, ticker });
-        setShowTickerDropdown(false);
-        setSelectedTickerIndex(-1);
-    }
-
-    const handleKeyDown = (e) => {
-        if (!showTickerDropdown || tickerSuggestions.length === 0) return;
-
-        switch (e.key) {
-            case 'ArrowDown':
-                e.preventDefault();
-                setSelectedTickerIndex(prev =>
-                    prev < tickerSuggestions.length - 1 ? prev + 1 : 0
-                );
-                break;
-            case 'ArrowUp':
-                e.preventDefault();
-                setSelectedTickerIndex(prev =>
-                    prev > 0 ? prev - 1 : tickerSuggestions.length - 1
-                );
-                break;
-            case 'Enter':
-                e.preventDefault();
-                if (selectedTickerIndex >= 0) {
-                    selectTicker(tickerSuggestions[selectedTickerIndex]);
-                }
-                break;
-            case 'Escape':
-                setShowTickerDropdown(false);
-                setSelectedTickerIndex(-1);
-                break;
-            default:
-                break;
-        }
-    }
-
-    // Helper function to get minimum date for expiration and close dates
-    const getMinDate = (field) => {
-        if (field === 'expDate' || field === 'closeDate') {
-            return newTrade.openDate || getCurrentDate();
-        }
-        return undefined;
-    }
-
-    // Helper function to check if a field should be disabled
-    const isFieldDisabled = (field) => {
-        if (field === 'expDate' || field === 'closeDate') {
-            return !newTrade.openDate;
-        }
-        return false;
-    }
+    const [tradeToClose, setTradeToClose] = useState(null);
 
     const addTrade = (e) => {
         e.preventDefault();
-        // const { profitLoss, roi } = calculateProfitLossAndROI(newTrade);
-        // const completeTrade = {
-        //     ...newTrade,
-        //     profitLoss,
-        //     roi
-        // };
-        console.log(newTrade)
-        const status = (<div>Open (<button className='bg-gray-700 text-white rounded-md p-2'>Close trade</button>)</div>)
-        newTrade.status = status;
-        setTrades([...trades, newTrade]);
+
+        // Calculate profit/loss and ROI for the new trade
+        const { profitLoss, roi } = calculateProfitLossAndROI(newTrade);
+        const completeTrade = {
+            ...newTrade,
+            profitLoss,
+            roi
+        };
+
+        // console.log(completeTrade);
+        const status = (<div>Open (<button className='bg-gray-700 text-white rounded-md p-2'>Close trade</button>)</div>);
+        completeTrade.status = status;
+        setTrades([...trades, completeTrade]);
         setNewTrade(initialTrade);
         setShowNewTradeModal(false);
     };
 
+    const handleCloseTrade = (trade, index) => {
+        setTradeToClose({ ...trade, originalIndex: index });
+        setShowCloseTradeModal(true);
+    };
+
+    const onCloseTrade = (updatedTrade) => {
+        const newTrades = [...trades];
+        newTrades[updatedTrade.originalIndex] = updatedTrade;
+        setTrades(newTrades);
+    };
+
     function calculateProfitLossAndROI(trade) {
-        const strike = parseFloat(trade.strike) || 1;
+        const strike = parseFloat(trade.strike) || 0;
+        const qty = parseFloat(trade.qty) || 0;
         const credit = parseFloat(trade.credit) || 0;
         const debit = parseFloat(trade.debit) || 0;
+
+        // Calculate profit/loss (credit received - debit paid)
         const profitLoss = credit - debit;
-        const roi = credit > 0 ? ((profitLoss * 100) / strike).toFixed(2) : 0;
 
-        return { profitLoss: profitLoss.toFixed(2), roi };
+        // Calculate capital at risk (strike price × quantity × 100 for options)
+        const capitalAtRisk = strike * qty;
+
+        // Calculate ROI as percentage of capital at risk
+        // For wheel strategy: ROI = (Profit/Loss / Capital at Risk) × 100
+        const roi = capitalAtRisk > 0 ? (profitLoss / capitalAtRisk).toFixed(2) : 0;
+
+        return {
+            profitLoss: profitLoss.toFixed(2),
+            roi: parseFloat(roi)
+        };
     }
-
-
-    // { name: 'status', label: 'Status (Open/Closed)', type: 'text' },
-    // { name: 'closeDate', label: 'Close Date', type: 'date' },
-    // { name: 'debit', label: 'Debit ($)', type: 'number' }
+    
     return (
         <div className="p-4">
             <h2 className="text-xl font-bold mb-4">Wheel Strategy Options Tracker</h2>
@@ -203,7 +99,7 @@ const WheelTracker = () => {
                     <tr className="bg-gray-100">
                         {[
                             'Open Date', 'Type', 'Ticker', 'QTY', 'Strike', 'Exp. Date', 'Credit ($)',
-                            'Status', 'Close Date', 'Debit ($)', 'Profit/Loss ($)', 'ROI (%)'
+                            'Status', 'Close Date', 'Debit ($)', 'Profit/Loss ($)', 'ROI'
                         ].map((heading) => (
                             <th key={heading} className="border p-2">{heading}</th>
                         ))}
@@ -211,121 +107,34 @@ const WheelTracker = () => {
                 </thead>
                 <tbody>
                     {trades.map((trade, index) => (
-                        <tr key={index}>
-                            {[
-                                'openDate', 'type', 'ticker', 'qty', 'strike', 'expDate',
-                                'credit', 'status', 'closeDate', 'debit'
-                            ].map((field) => (
-                                <td key={field} className="border p-2">
-                                    <div className="w-full p-1 border rounded">{trade[field]}</div>
-                                </td>
-                            ))}
-                            <td className="border p-2 text-green-600">{trade.profitLoss}</td>
-                            <td className="border p-2 text-blue-600">{trade.roi}</td>
-                        </tr>
+                        <TradeRow
+                            key={index}
+                            trade={trade}
+                            index={index}
+                            onCloseTrade={handleCloseTrade}
+                        />
                     ))}
                 </tbody>
             </table>
 
-            {/* Modal */}
-            {showNewTradeModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded shadow-lg w-full max-w-xl">
-                        <h3 className="text-lg font-semibold mb-4">Add New Trade</h3>
-                        <form onSubmit={addTrade} className="grid grid-cols-2 gap-4">
-                            {[
-                                { name: 'openDate', label: 'Open Date', type: 'date' },
-                                { name: 'type', label: 'Type', type: 'select', options: ['CALL', 'PUT'] },
-                                { name: 'ticker', label: 'Ticker', type: 'autocomplete' },
-                                { name: 'qty', label: 'Quantity', type: 'number' },
-                                { name: 'strike', label: 'Strike Price', type: 'number' },
-                                { name: 'expDate', label: 'Expiration Date', type: 'date' },
-                                { name: 'credit', label: 'Credit ($)', type: 'number' },
-                            ].map(({ name, label, type, options }) => (
-                                <div key={name}>
-                                    <label className="block text-sm font-medium mb-1">{label}</label>
-                                    {type === 'select' ? (
-                                        <select
-                                            value={newTrade[name]}
-                                            onChange={(e) => handleChange(name, e.target.value)}
-                                            className="w-full border p-2 rounded"
-                                            required
-                                        >
-                                            <option value="">Select {label.toLowerCase()}</option>
-                                            {options.map(option => (
-                                                <option key={option} value={option}>
-                                                    {option}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    ) : type === 'autocomplete' ? (
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                value={newTrade[name]}
-                                                onChange={(e) => handleChange(name, e.target.value.toUpperCase())}
-                                                onKeyDown={handleKeyDown}
-                                                className="w-full border p-2 rounded"
-                                                required
-                                            />
-                                            {showTickerDropdown && tickerSuggestions.length > 0 && (
-                                                <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg overflow-y-hidden" style={{ maxHeight: '200px' }}>
-                                                    {isLoadingTickers ? (
-                                                        <div className="px-3 py-2 text-gray-500">Loading tickers...</div>
-                                                    ) : (
-                                                        tickerSuggestions.map((ticker, index) => (
-                                                            <div
-                                                                key={index}
-                                                                className={`px-3 py-2 cursor-pointer ${index === selectedTickerIndex
-                                                                    ? 'bg-blue-100 text-blue-900'
-                                                                    : 'hover:bg-gray-100'
-                                                                    }`}
-                                                                onClick={() => selectTicker(ticker)}
-                                                            >
-                                                                {ticker}
-                                                            </div>
-                                                        ))
-                                                    )}
-                                                </div>
-                                            )}
-                                        </div>
-                                    ) : (
-                                        <input
-                                            type={type}
-                                            value={newTrade[name]}
-                                            min={getMinDate(name)}
-                                            max={name === 'openDate' ? getCurrentDate() : undefined}
-                                            disabled={isFieldDisabled(name)}
-                                            onChange={(e) => handleChange(name, e.target.value)}
-                                            className={`w-full border p-2 rounded ${isFieldDisabled(name) ? 'bg-gray-100 cursor-not-allowed' : ''}`}
-                                            required={name !== 'closeDate'}
-                                            placeholder={isFieldDisabled(name) ? 'Select open date first' : undefined}
-                                        />
-                                    )}
-                                </div>
-                            ))}
-                            <div className="col-span-2 flex justify-end mt-4 space-x-2">
-                                <button
-                                    type="button"
-                                    onClick={() => setShowNewTradeModal(false)}
-                                    className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                                >
-                                    Add Trade
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+            {/* New Trade Modal */}
+            <NewTradeModal
+                showNewTradeModal={showNewTradeModal}
+                setShowNewTradeModal={setShowNewTradeModal}
+                newTrade={newTrade}
+                setNewTrade={setNewTrade}
+                addTrade={addTrade}
+            />
+
+            {/* Close Trade Modal */}
+            <CloseTradeModal
+                showCloseTradeModal={showCloseTradeModal}
+                setShowCloseTradeModal={setShowCloseTradeModal}
+                tradeToClose={tradeToClose}
+                onCloseTrade={onCloseTrade}
+            />
         </div>
     );
-
 }
 
 export default WheelTracker
