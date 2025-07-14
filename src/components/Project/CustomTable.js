@@ -2,44 +2,47 @@ import React from 'react';
 
 const CustomTable = ({ headers, children, className = "" }) => {
     return (
-        <div className={`w-full border border-collapse ${className}`}>
+        <div className={`w-full bg-white border border-gray-200 rounded-lg overflow-x-auto ${className}`}>
             {/* Table Header */}
-            <div className="bg-gray-100 border-b">
-                <div className="grid grid-cols-12 gap-0">
+            <div className="w-full">
+                <div className="flex w-full border-b border-gray-200 bg-gray-50">
                     {headers.map((header, index) => (
-                        <div key={header} className="border-r p-2 font-semibold text-gray-700">
+                        <div
+                            key={header}
+                            className="py-3 px-4 font-semibold text-gray-700 text-xs uppercase tracking-wider flex-1 text-left whitespace-nowrap"
+                            style={{ minWidth: 100 }}
+                        >
                             {header}
                         </div>
                     ))}
                 </div>
             </div>
-
             {/* Table Body */}
-            <div className="divide-y divide-gray-200">
+            <div className="divide-y divide-gray-100">
                 {children}
             </div>
         </div>
     );
 };
 
-const TableRow = ({ children, className = "", onClick, isChild = false }) => {
-    const baseClasses = "grid grid-cols-12 gap-0 border-b hover:bg-gray-50 transition-colors";
-    const childClasses = isChild ? "bg-gray-50 border-l-4 border-blue-300 ml-8 my-2" : "";
-    const combinedClasses = `${baseClasses} ${childClasses} ${className}`;
-
+const TableRow = ({ children, className = "", onClick, isChild = false, status = "open" }) => {
+    const isClosed = status === "Closed" || status === "Assigned" || status === "Rolled" || status === "Expired";
+    const baseClasses = "flex w-full items-center bg-white hover:bg-gray-50 transition-colors border-0";
+    const childClasses = isChild ? "bg-blue-50 border-blue-200 ml-8 my-2" : "";
+    const closedClasses = isClosed ? "opacity-60 bg-gray-50 text-gray-400" : "";
+    const combinedClasses = `${baseClasses} ${childClasses} ${closedClasses} ${className}`;
     return (
-        <div className={combinedClasses} onClick={onClick}>
+        <div className={combinedClasses} onClick={onClick} style={{ minHeight: 48 }}>
             {children}
         </div>
     );
 };
 
-const TableCell = ({ children, className = "", colSpan = 1 }) => {
-    const baseClasses = "border-r p-2 flex items-center";
+const TableCell = ({ children, className = "", colSpan = 1, minWidth = 100 }) => {
+    const baseClasses = "py-3 px-4 flex-1 text-left text-sm text-gray-700 items-center whitespace-nowrap";
     const combinedClasses = `${baseClasses} ${className}`;
-
     return (
-        <div className={combinedClasses} style={{ gridColumn: `span ${colSpan}` }}>
+        <div className={combinedClasses} style={{ minWidth, gridColumn: `span ${colSpan}` }}>
             {children}
         </div>
     );

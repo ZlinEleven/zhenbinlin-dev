@@ -1,9 +1,22 @@
 import React from 'react';
 import { TableRow, TableCell } from './CustomTable';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 
-const TradeRow = ({ trade, index, onCloseTrade, isChild = false, parentIndex = null }) => {
+const TradeRow = ({ trade, index, onCloseTrade, onDeleteTrade, isChild = false, parentIndex = null, onEditTrade }) => {
     const handleCloseClick = () => {
         onCloseTrade(trade, index);
+    };
+
+    const handleDeleteClick = () => {
+        if (trade._id && window.confirm('Are you sure you want to delete this trade?')) {
+            onDeleteTrade(trade._id);
+        }
+    };
+
+    const handleEditClick = () => {
+        if (onEditTrade) {
+            onEditTrade(trade, index);
+        }
     };
 
     const getStatusDisplay = () => {
@@ -29,42 +42,46 @@ const TradeRow = ({ trade, index, onCloseTrade, isChild = false, parentIndex = n
     const textSize = isChild ? "text-sm" : "text-base";
 
     return (
-        <TableRow isChild={isChild} className={textSize}>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.openDate}</div>
+        <TableRow
+            status={trade.status}
+            isChild={isChild}
+            className={`group ${isChild ? "ml-8" : ""}`}
+        >
+            <TableCell className={textSize}>{trade.openDate}</TableCell>
+            <TableCell className={textSize}>{trade.type}</TableCell>
+            <TableCell className={textSize}>{trade.ticker}</TableCell>
+            <TableCell className={textSize}>{trade.qty}</TableCell>
+            <TableCell className={textSize}>${trade.strike}</TableCell>
+            <TableCell className={textSize}>{trade.expDate}</TableCell>
+            <TableCell className={textSize}>${trade.credit}</TableCell>
+            <TableCell className={textSize}>{getStatusDisplay()}</TableCell>
+            <TableCell className={textSize}>{trade.closeDate || '-'}</TableCell>
+            <TableCell className={textSize}>${trade.debit || '-'}</TableCell>
+            <TableCell className={`${textSize} ${parseFloat(trade.profitLoss) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                ${trade.profitLoss}
             </TableCell>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.type}</div>
+            <TableCell className={`${textSize} ${parseFloat(trade.roi) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {trade.roi}%
             </TableCell>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.ticker}</div>
-            </TableCell>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.qty}</div>
-            </TableCell>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.strike}</div>
-            </TableCell>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.expDate}</div>
-            </TableCell>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.credit}</div>
-            </TableCell>
-            <TableCell>
-                {getStatusDisplay()}
-            </TableCell>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.closeDate}</div>
-            </TableCell>
-            <TableCell>
-                <div className="w-full p-1 border rounded">{trade.debit}</div>
-            </TableCell>
-            <TableCell className="text-green-600">
-                <div className="w-full p-1 border rounded">{trade.profitLoss}</div>
-            </TableCell>
-            <TableCell className="text-blue-600">
-                <div className="w-full p-1 border rounded">{trade.roi}%</div>
+            <TableCell className={textSize + ' flex gap-2 items-center justify-end min-w-[60px]'}>
+                {trade._id && (
+                    <>
+                        <button
+                            onClick={handleEditClick}
+                            className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-gray-100 border border-gray-300 text-gray-500 hover:text-blue-600"
+                            title="Edit trade"
+                        >
+                            <FiEdit2 size={16} />
+                        </button>
+                        <button
+                            onClick={handleDeleteClick}
+                            className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-gray-100 border border-gray-300 text-gray-500 hover:text-red-600"
+                            title="Delete trade"
+                        >
+                            <FiTrash2 size={16} />
+                        </button>
+                    </>
+                )}
             </TableCell>
         </TableRow>
     );

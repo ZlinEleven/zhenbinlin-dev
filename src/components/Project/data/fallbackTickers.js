@@ -68,7 +68,7 @@ const fallbackTickers = [
     'HD', 'LOW', 'TGT', 'WMT', 'COST', 'TJX', 'ROST', 'DG', 'DLTR', 'BURL', 'FIVE', 'OLLI', 'BIG',
 
     // Other
-    'SOFI'
+    'SOFI', 'NU'
 ];
 
 export { fallbackTickers };

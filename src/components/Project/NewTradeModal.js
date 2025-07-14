@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { fallbackTickers } from './data/fallbackTickers';
 
+const statusOptions = ['Open', 'Closed', 'Assigned', 'Rolled', 'Expired'];
+
 const NewTradeModal = ({
     showNewTradeModal,
     setShowNewTradeModal,
     newTrade,
     setNewTrade,
-    addTrade
+    addTrade,
+    saving = false,
+    isEditMode = false
 }) => {
     // Ticker autocomplete state
     const [tickerSuggestions, setTickerSuggestions] = useState([]);
@@ -31,9 +35,9 @@ const NewTradeModal = ({
             for (let i = 1; i < lines.length && tickers.length < 1001; i++) {
                 if (lines[i].trim()) {
                     const values = lines[i].split(',');
-                    console.log(values);
+                    // console.log(values);
                     const symbol = values[0]?.replace(/"/g, ''); // Remove quotes
-                    console.log(symbol);
+                    // console.log(symbol);
                     const status = values[4]?.replace(/"/g, ''); // Status is in 5th column
                     const assetType = values[3]?.replace(/"/g, ''); // Asset type is in 4th
                     const exchange = values[2]?.replace(/"/g, ''); // Exchange is in 3rd column
@@ -61,7 +65,7 @@ const NewTradeModal = ({
             setIsLoadingTickers(false);
         }
     };
-    
+
     // Fetch tickers from API on component mount
     useEffect(() => {
         fetchTickers();
@@ -144,7 +148,9 @@ const NewTradeModal = ({
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white p-6 rounded shadow-lg w-full max-w-xl">
-                <h3 className="text-lg font-semibold mb-4">Add New Trade</h3>
+                <h3 className="text-lg font-semibold mb-4">
+                    {isEditMode ? 'Edit Trade' : 'Add New Trade'}
+                </h3>
                 <form onSubmit={addTrade} className="grid grid-cols-2 gap-4">
                     {[
                         { name: 'openDate', label: 'Open Date', type: 'date' },
@@ -217,6 +223,44 @@ const NewTradeModal = ({
                             )}
                         </div>
                     ))}
+
+                    {/* Edit mode only fields */}
+                    {isEditMode && newTrade.status !== 'Open' && (
+                        <>
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Status</label>
+                                <select
+                                    value={newTrade.status || 'Open'}
+                                    onChange={e => setNewTrade({ ...newTrade, status: e.target.value })}
+                                    className="w-full border p-2 rounded"
+                                    required
+                                >
+                                    {statusOptions.map(option => (
+                                        <option key={option} value={option}>{option}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Close Date</label>
+                                <input
+                                    type="date"
+                                    value={newTrade.closeDate || ''}
+                                    onChange={e => setNewTrade({ ...newTrade, closeDate: e.target.value })}
+                                    className="w-full border p-2 rounded"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Debit ($)</label>
+                                <input
+                                    type="number"
+                                    value={newTrade.debit || ''}
+                                    onChange={e => setNewTrade({ ...newTrade, debit: e.target.value })}
+                                    className="w-full border p-2 rounded"
+                                />
+                            </div>
+                        </>
+                    )}
+
                     <div className="col-span-2 flex justify-end mt-4 space-x-2">
                         <button
                             type="button"
@@ -227,9 +271,10 @@ const NewTradeModal = ({
                         </button>
                         <button
                             type="submit"
-                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={saving}
                         >
-                            Add Trade
+                            {saving ? (isEditMode ? 'Saving...' : 'Adding...') : (isEditMode ? 'Save Changes' : 'Add Trade')}
                         </button>
                     </div>
                 </form>

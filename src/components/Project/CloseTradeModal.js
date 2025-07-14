@@ -5,7 +5,8 @@ const CloseTradeModal = ({
     setShowCloseTradeModal,
     tradeToClose,
     onCloseTrade,
-    calculateProfitLossAndROI
+    calculateProfitLossAndROI,
+    saving = false
 }) => {
     const [closeData, setCloseData] = useState({
         status: 'Closed',
@@ -35,7 +36,7 @@ const CloseTradeModal = ({
                 expDate: '',
                 credit: ''
             });
-        } else if (closeData.status === 'Expired' && tradeToClose) {
+        } else if ((closeData.status === 'Expired' || closeData.status === 'Assigned') && tradeToClose) {
             setCloseData(prev => ({
                 ...prev,
                 closeDate: tradeToClose.expDate,
@@ -195,9 +196,9 @@ const CloseTradeModal = ({
                                 min={getMinDate()}
                                 max={getMaxDate()}
                                 onChange={(e) => handleChange('closeDate', e.target.value)}
-                                className={`w-full border p-2 rounded ${closeData.status === 'Expired' ? 'bg-gray-100 cursor-not-allowed' : ''
+                                className={`w-full border p-2 rounded ${(closeData.status === 'Expired' || closeData.status === 'Assigned') ? 'bg-gray-100 cursor-not-allowed' : ''
                                     }`}
-                                readOnly={closeData.status === 'Expired'}
+                                readOnly={closeData.status === 'Expired' || closeData.status === 'Assigned'}
                                 required
                             />
                             <p className="text-xs text-gray-500 mt-1">
@@ -327,9 +328,10 @@ const CloseTradeModal = ({
                         </button>
                         <button
                             type="submit"
-                            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={saving}
                         >
-                            {closeData.status === 'Rolled' ? 'Close & Create New Position' : 'Close Trade'}
+                            {saving ? 'Saving...' : (closeData.status === 'Rolled' ? 'Close & Create New Position' : 'Close Trade')}
                         </button>
                     </div>
                 </form>
