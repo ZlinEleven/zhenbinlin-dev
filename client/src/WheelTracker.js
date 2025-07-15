@@ -7,12 +7,14 @@ import { CustomTable } from './CustomTable'
 import apiService from './services/api'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import AuthForm from './AuthForm'
+import { defaultColumnConfig } from './utils/tableConfig'
 
 const getCurrentDate = () => {
     const today = new Date();
     return today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
 };
 
+const columnConfig = defaultColumnConfig;
 // const initialTrade = {
 //     openDate: getCurrentDate(),
 //     type: '',
@@ -378,12 +380,7 @@ function WheelTrackerInner() {
             </button>
 
             {/* Trade Table */}
-            <CustomTable
-                headers={[
-                    'Open Date', 'Type', 'Ticker', 'QTY', 'Strike', 'Exp. Date', 'Credit ($)',
-                    'Status', 'Close Date', 'Debit ($)', 'Profit/Loss ($)', 'ROI', '' // Empty for actions
-                ]}
-            >
+            <CustomTable>
                 {organizedTrades.map((trade, displayIndex) => (
                     <TradeRow
                         key={trade._id || trade.originalIndex}

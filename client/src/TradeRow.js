@@ -1,8 +1,13 @@
 import React from 'react';
 import { TableRow, TableCell } from './CustomTable';
 import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { defaultColumnConfig, getWidths, getColumnClassNames } from './utils/tableConfig'
 
 const TradeRow = ({ trade, index, onCloseTrade, onDeleteTrade, isChild = false, parentIndex = null, onEditTrade }) => {
+    const columnConfig = defaultColumnConfig;
+    const columnClassNames = getColumnClassNames(columnConfig);
+    const widths = getWidths(columnConfig);
+
     const handleCloseClick = () => {
         onCloseTrade(trade, index);
     };
@@ -47,23 +52,23 @@ const TradeRow = ({ trade, index, onCloseTrade, onDeleteTrade, isChild = false, 
             isChild={isChild}
             className={`group ${isChild ? "ml-8" : ""}`}
         >
-            <TableCell className={textSize}>{trade.openDate}</TableCell>
-            <TableCell className={textSize}>{trade.type}</TableCell>
-            <TableCell className={textSize}>{trade.ticker}</TableCell>
-            <TableCell className={textSize}>{trade.qty}</TableCell>
-            <TableCell className={textSize}>${trade.strike}</TableCell>
-            <TableCell className={textSize}>{trade.expDate}</TableCell>
-            <TableCell className={textSize}>${trade.credit}</TableCell>
-            <TableCell className={textSize}>{getStatusDisplay()}</TableCell>
-            <TableCell className={textSize}>{trade.closeDate || '-'}</TableCell>
-            <TableCell className={textSize}>${trade.debit || '-'}</TableCell>
-            <TableCell className={`${textSize} ${parseFloat(trade.profitLoss) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+            <TableCell className={textSize + columnClassNames[0]} width={widths[0] || "flex-1"}>{trade.openDate}</TableCell>
+            <TableCell className={textSize + columnClassNames[1]} width={widths[1] || "flex-1"}>{trade.type}</TableCell>
+            <TableCell className={textSize + columnClassNames[2]} width={widths[2] || "flex-1"}>{trade.ticker}</TableCell>
+            <TableCell className={textSize + columnClassNames[3]} width={widths[3] || "flex-1"}>{trade.qty}</TableCell>
+            <TableCell className={textSize + columnClassNames[4]} width={widths[4] || "flex-1"}>${trade.strike}</TableCell>
+            <TableCell className={textSize + columnClassNames[5]} width={widths[5] || "flex-1"}>{trade.expDate}</TableCell>
+            <TableCell className={textSize + columnClassNames[6]} width={widths[6] || "flex-1"}>${trade.credit}</TableCell>
+            <TableCell className={textSize + columnClassNames[7]} width={widths[7] || "flex-1"}>{getStatusDisplay()}</TableCell>
+            <TableCell className={textSize + columnClassNames[8]} width={widths[8] || "flex-1"}>{trade.closeDate || '-'}</TableCell>
+            <TableCell className={textSize + columnClassNames[9]} width={widths[9] || "flex-1"}>${trade.debit || '-'}</TableCell>
+            <TableCell className={`${textSize} ${columnClassNames[10]} ${parseFloat(trade.profitLoss) >= 0 ? 'text-green-600' : 'text-red-600'}`} width={widths[10] || "flex-1"}>
                 ${trade.profitLoss}
             </TableCell>
-            <TableCell className={`${textSize} ${parseFloat(trade.roi) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+            <TableCell className={`${textSize} ${columnClassNames[11]} ${parseFloat(trade.roi) >= 0 ? 'text-green-600' : 'text-red-600'}`} width={widths[11] || "flex-1"}>
                 {trade.roi}%
             </TableCell>
-            <TableCell className={textSize + ' flex gap-2 items-center justify-end min-w-[60px]'}>
+            <TableCell className={textSize + columnClassNames[12] + ' flex gap-2 items-center justify-end min-w-[60px]'} width={widths[12] || "w-20"}>
                 {trade._id && (
                     <>
                         <button

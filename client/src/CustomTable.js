@@ -1,18 +1,21 @@
 import React from 'react';
+import { defaultColumnConfig } from './utils/tableConfig'
 
-const CustomTable = ({ headers, children, className = "" }) => {
+const CustomTable = ({ children, className = "" }) => {
+    const columnConfig = defaultColumnConfig;
+
     return (
         <div className={`w-full bg-white border border-gray-200 rounded-lg overflow-x-auto ${className}`}>
             {/* Table Header */}
             <div className="w-full">
                 <div className="flex w-full border-b border-gray-200 bg-gray-50">
-                    {headers.map((header, index) => (
+                    {columnConfig.map((col, index) => (
                         <div
-                            key={header}
-                            className="py-3 px-4 font-semibold text-gray-700 text-xs uppercase tracking-wider flex-1 text-left whitespace-nowrap"
+                            key={col.header}
+                            className={`py-3 px-4 font-semibold text-gray-700 text-xs uppercase tracking-wider text-left whitespace-nowrap ${col.width} ${col.className}`}
                             style={{ minWidth: 100 }}
                         >
-                            {header}
+                            {col.header}
                         </div>
                     ))}
                 </div>
@@ -38,8 +41,8 @@ const TableRow = ({ children, className = "", onClick, isChild = false, status =
     );
 };
 
-const TableCell = ({ children, className = "", colSpan = 1, minWidth = 100 }) => {
-    const baseClasses = "py-3 px-4 flex-1 text-left text-sm text-gray-700 items-center whitespace-nowrap";
+const TableCell = ({ children, className = "", colSpan = 1, minWidth = 100, width = "flex-1" }) => {
+    const baseClasses = `py-3 px-4 text-left text-sm text-gray-700 items-center whitespace-nowrap ${width}`;
     const combinedClasses = `${baseClasses} ${className}`;
     return (
         <div className={combinedClasses} style={{ minWidth, gridColumn: `span ${colSpan}` }}>
