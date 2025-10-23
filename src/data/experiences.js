@@ -5,10 +5,10 @@ import { FaRobot } from "react-icons/fa6";
 
 let experiences = [
     {
-        date: "Jun 2025 - Present",
+        date: "Jun 2025 - Aug 2025",
         title: "Software Engineering Intern",
         role: "Capital One - Internship",
-        desc: "Incoming Intern",
+        desc: "Developed a new microservice to automatically validate Federal Acknowledgement files, replacing third-party dependencies and manual validation processes; reduced operational costs by 80% and decreased human errors. Engineered an SQS-Lambda pipeline to process S3 object creation events and asynchronously validate transaction data, fully automating a manual workflow and enabling immediate operational response to anomalies. Integrated private SDP stream to transmit Federal Acknowledgement data to the OnePay UI. Developed OpenSearch queries to retrieve and display real-time transaction data for the operations team. Achieved 100% test coverage utilizing Jest across unit, integration, system, and end-to-end tests with logging",
         icon: <MdOutlineWork />
     },
     {
@@ -22,7 +22,7 @@ let experiences = [
         date: "Jun 2024 - Aug 2024",
         title: "Software Engineering Intern",
         role: "Angi - Internship",
-        desc: "Worked with content team to revamp Contentful models and API updates between multiple microservices to enable dynamically rendered landing pages and improved content management logic, increasing page creation efficiency by 30%. Worked on Next.js frontend and Kotlin and Java Spring backend to serve landing pages. Utilized SwaggerUI and Grafana logs to observe API dependencies and usage. Created python migration scripts to move 100+ legacy task assets to new headless CMS system.",
+        desc: "Increased Google Search click-through rate by 12% by modifying JSON-LD schema for SEO and Google indexing. Enabled Contentful workflow for 2,800 employees by integrating 3 microservices across distributed architecture. Achieved 2 s updates by building REST API in Spring Boot with Redis caching to fetch from GraphQL data layer. Authored 10+ unit tests with JUnit and deployed 5 production releases to Kubernetes via Jenkins CI/CD pipeline.",
         icon: <MdOutlineWork />
     },
     {
@@ -43,16 +43,15 @@ let experiences = [
         date: "Aug 2023 - Present",
         title: "Fullstack Engineer",
         role: "Loqi - Self-employed",
-        desc: "Worked in a team of 6 to develop and implement an AI-leveraged learning tool for students. Designed and built backend microservice using Express, Postman and Firebase Cloud Functions. Built out initial frontend with Next and Tailwind CSS consisting of user login, sessions and flashcards screen.",
+        desc: "Led 6 engineers to develop an AI-leveraged application using Express, Google Cloud Functions, and OpenAI LLMs. Engineered 3 microservices containerized with Docker, creating 15+ REST API endpoints tested with Postman. Built mobile-responsive website with Next.js, Typescript, and TailwindCSS, hosted on Vercel.",
         icon: <FaLightbulb />
     },
     {
         date: "Jun 2023 - Aug 2023",
         title: "Software Engineering Intern",
         role: "Palapa - Internship",
-        desc: "Fullstack software engineer intern for a no-code computer vision startup. Implemented robust dataset importer utility with concurrent image processing and optimized image upload process for diverse file formats. Resolved critical bugs in the AI deletion process, ensuring seamless cleanup in Firebase Storage and Firestore Database upon AI deletion.",
+        desc: "Optimized image upload efficiency by 30% by Implementing a new dataset importer utility to handle 5+ file formats and concurrent image processing. Rectified a critical bug within the AI deletion process, guaranteeing seamless data cleanup across Firebase Storage and Firestore Database upon AI deletion; reduced orphaned data by 99%. Created an admin-facing profile photo picker by leveraging the Firebase API to integrate Authentication for secure access and Storage for image uploads.",
         icon: <MdOutlineWork />
-
     },
     {
         date: "Oct 2022 - Jun 2023",

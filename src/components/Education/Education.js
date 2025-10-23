@@ -27,7 +27,7 @@ const Education = () => {
                         <p className='text-lg'>B.S, Computer Science</p>
                         <p>Expected BS Graduation: May 2026</p>
                         <p>Expected MS Graduation: May 2027</p>
-                        <p>GPA: 3.85/4.0</p>
+                        <p>GPA: 3.83/4.0</p>
                     </div>
                 </div>
                 <button
