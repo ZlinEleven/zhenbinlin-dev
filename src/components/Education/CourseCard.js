@@ -5,9 +5,7 @@ const CourseCard = ({ title, courseNum, grade, desc }) => {
     const [descOpen, setdescOpen] = useState(false);
     const toggleDesc = () => setdescOpen(!descOpen)
 
-    console.log(courseNum)
     if (courseNum === undefined) {
-        console.log("hello")
         return (
             <div className='flex justify-center border-t-2 border-b-2 px-4 border-gray-300 items-center hover:bg-gray-700 hover:text-white duration-300 py-3 text-green-700'>{title}</div>
         )

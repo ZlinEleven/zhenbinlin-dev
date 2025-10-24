@@ -9,13 +9,12 @@ const Education = () => {
 
     const coursework = [];
     for (const [semester, _courses] of Object.entries(courses).reverse()) {
-        coursework.push(<div className='flex py-2 justify-center font-bold text-green-700'>{semester}</div>) // Append the semester divider
+        coursework.push(<div key={semester} className='flex py-2 justify-center font-bold text-green-700'>{semester}</div>) // Append the semester divider
         _courses.forEach(course => {
             coursework.push(<CourseCard key={course.title} title={course.title} courseNum={course.courseNum} grade={course.grade} desc={course.desc} />)
         })
     }
 
-    console.log(coursework)
     return (
         <div name="education" className='flex flex-col items-center my-8'>
             <h1 className=' text-4xl font-bold text-gray-700 mb-[1.75rem] md:mb-[2rem]'>My Education</h1>
@@ -44,9 +43,6 @@ const Education = () => {
                         <p className='ml-[5%]'>Status</p>
                     </div>
                     {
-                        // courses.map((course) => {
-                        //     return <CourseCard key={course.title} title={course.title} courseNum={course.courseNum} grade={course.grade} desc={course.desc} />
-                        // })
                         coursework
                     }
                 </div>
