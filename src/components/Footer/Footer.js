@@ -1,5 +1,6 @@
 import React from 'react'
 import FooterCards from './FooterCards'
+import LastUpdated from './LastUpdated'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { ImProfile } from "react-icons/im";
@@ -17,6 +18,7 @@ const Footer = () => {
                 <FooterCards text="Github" icon={<FontAwesomeIcon icon={faGithub} color='#fae1b2' size='lg' className='py-2 mt-[-10px]' />} link='https://github.com/ZlinEleven'/>
                 <FooterCards text="Resume" icon={<ImProfile color='#fae1b2' size='38' className='py-2 mt-[-10px]' />} link='https://drive.google.com/file/d/1JbtAwQlNt0Xo2QTBeJjw2I7yPyZuMwVt/view?usp=sharing'/>
             </div>
+            <LastUpdated />
         </div>
     )
 }
