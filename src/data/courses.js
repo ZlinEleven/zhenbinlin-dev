@@ -101,6 +101,46 @@ let courses = {
             title: "CSE316 Teaching Assistant"
         }
     ],
+    "Fall 2025 (Senior)": [
+        {
+            title: "Computer Networks",
+            courseNum: "CSE310",
+            grade: "B",
+            desc: "Overview of computer networks and the Internet. Concept of end systems, access networks, clients and servers. Connection-oriented and connectionless services. Circuit switching and packet switching. Description of Internet protocol layers, including application layer, transport layer, network layer and link layer. Architecture of the current Internet and the World-Wide Web. TCP/IP protocol stack. Internet routing and addressing. Local area network protocols, Ethernet hubs and switches. Wireless LANs. Multimedia networking."
+        },
+        {
+            title: "Legal Issues in Computing",
+            courseNum: "CSE312",
+            grade: "A-",
+            desc: "This course deals with the impact of computers on us as individuals and on our society.  Rapid changes in computing technology and in our use of that technology have changed the ways we work, play, and interact with other people.  These changes have created a flood of new social, legal and ethical issues that demand critical examination."
+        },
+        {
+            title: "Compute Graphics",
+            courseNum: "CSE528",
+            grade: "B+",
+            desc: "This course emphasizes a hands-on approach to the use of computer graphics. The topics covered include models, picture description, and interaction; c windowing, clipping, panning, and zooming; geometrical transformations in 2D and 3D; algorithms for raster displays (scan-line conversion, polygon fill, polygon clipping, etc.); hidden line and hidden surface removal, shading models; user interaction. The students will implement a substantial graphics application program."
+        },
+    ],
+    "Spring 2026 (Senior)": [
+        {
+            title: "Technical Communications",
+            courseNum: "CSE300",
+            grade: "In progress...",
+            desc: "Principles of professional technical communications for Computer Science and Information Systems majors. Topics include writing business communications, user manuals, press releases, literature reviews, and research abstracts. Persuasive oral communications and effective presentation techniques, to address a range of audiences, will also be covered."
+        },
+        {
+            title: "Introduction to the Theory of Computation",
+            courseNum: "CSE303",
+            grade: "In progress...",
+            desc: "An introduction to the abstract notions encountered in machine computation. Topics include finite automata, regular expressions, and formal languages, with emphasis on regular and context-free grammars. Questions relating to what can and cannot be done by machines are covered by considering various models of computation, including Turing machines, recursive functions, and universal machines."
+        },
+        {
+            title: "Software Engineering",
+            courseNum: "CSE416",
+            grade: "In progress...",
+            desc: "Introduces the basic concepts and modern tools and techniques of software engineering. Emphasizes the development of reliable and maintainable software via system requirements and specifications, software design methodologies including object-oriented design, implementation, integration, and testing; software project management; life-cycle documentation; software maintenance; and consideration of human factor issues."
+        },
+    ],
 }
 
 export default courses;

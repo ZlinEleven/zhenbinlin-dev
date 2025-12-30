@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Experience from "./components/Experience/Experience";
-import About from "./components/About";
+import About from "./components/About/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer/Footer";
 import Skills from "./components/Skills/Skills";
