@@ -38,74 +38,74 @@ let lifeImages = [
     {
         src: [image11],
         alt: 'Life images group 1',
-        caption: 'Life Chapter 1',
-        description: 'Cherished moments from life chapter 1'
+        caption: 'Baby Picture',
+        description: ':D'
     },
     {
         src: [image21, image22],
         alt: 'Life images group 2',
-        caption: 'Life Chapter 2',
-        description: 'Cherished moments from life chapter 2'
+        caption: 'VEX World Championship',
+        description: '2022 Opportunity Division Tournament Champions'
     },
     {
         src: [image31, image32],
         alt: 'Life images group 3',
-        caption: 'Life Chapter 3',
-        description: 'Cherished moments from life chapter 3'
+        caption: 'High School Graduation',
+        description: 'Bronx Highschool of Science CO \'22'
     },
     {
         src: [image41],
         alt: 'Life images group 4',
-        caption: 'Life Chapter 4',
-        description: 'Cherished moments from life chapter 4'
+        caption: 'Freshman Year of College',
+        description: 'College day ones 🤧'
     },
     {
         src: [image51],
         alt: 'Life images group 5',
-        caption: 'Life Chapter 5',
-        description: 'Cherished moments from life chapter 5'
+        caption: 'First SWE Internship',
+        description: 'Interned at a Startup! - Summer 2023'
     },
     {
         src: [image61, image62, image63, image64, image65, image66, image67],
         alt: 'Life images group 6',
-        caption: 'Life Chapter 6',
-        description: 'Cherished moments from life chapter 6'
+        caption: 'IAC Fellow & Angi SWE',
+        description: 'Second SWE Internship & IAC Fellowship - Summer 2024'
     },
     {
         src: [image71, image72],
         alt: 'Life images group 7',
-        caption: 'Life Chapter 7',
-        description: 'Cherished moments from life chapter 7'
+        caption: 'CASB',
+        description: 'Joined Chinese Association at Stony Brook'
     },
     {
         src: [image81, image82, image83],
         alt: 'Life images group 8',
-        caption: 'Life Chapter 8',
-        description: 'Cherished moments from life chapter 8'
+        caption: 'Spectrum Summit',
+        description: 'Spectrum Scholars event at Spectrum HQ'
     },
     {
         src: [image91, image92, image93, image94],
         alt: 'Life images group 9',
-        caption: 'Life Chapter 9',
-        description: 'Cherished moments from life chapter 9'
+        caption: 'China Trip 2024',
+        description: 'First time visiting China since 2015'
     },
     {
         src: [image101],
         alt: 'Life images group 10',
-        caption: 'Life Chapter 10',
-        description: 'Cherished moments from life chapter 10'
+        caption: 'Girlfriend\'s Birthday!',
+        description: 'Celebration at Haidilao'
     },
     {
         src: [image111, image112, image113, image114, image115],
         alt: 'Life images group 11',
-        caption: 'Life Chapter 11',
-        description: 'Cherished moments from life chapter 11'
+        caption: 'Capital One SWE Internship',
+        description: 'Got the return offer! - Summer 2025'
     },
     {
         src: [image121, image122, image123, image124],
         alt: 'Life images group 12',
-        caption: 'Life Chapter 12',
-        description: 'Cherished moments from life chapter 12'
+        caption: '2nd Spectrum Summit',
+        description: 'Spectrum Scholar Summit year 2'
     }
 ];
 
