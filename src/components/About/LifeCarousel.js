@@ -50,11 +50,6 @@ const LifeCarousel = () => {
         }
     }, [isHovered, currentIndex]);
 
-    // useEffect(() => {
-    //     console.log("Current Index changed to:", currentIndex);
-    //     console.log("Number of images:", lifeImages[currentIndex].src.length);
-    // }, [currentIndex]);
-
     const goToSlide = (index) => {
         setCurrentIndex(index);
     };
@@ -94,10 +89,6 @@ const LifeCarousel = () => {
                                             src={src}
                                             alt={`${image.alt} ${i + 1}`}
                                             className="flex-1 h-full object-cover"
-                                            onError={(e) => {
-                                                // Fallback for missing images
-                                                e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjMWEyMDJmIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjY2NkNmY2IiBmb250LXNpemU9IjE2IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPkltYWdlIENvbWluZyBTb29uPC90ZXh0Pgo8L3N2Zz4=';
-                                            }}
                                         />
                                     ))}
                                 </div>
