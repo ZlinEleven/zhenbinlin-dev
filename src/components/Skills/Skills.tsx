@@ -1,36 +1,30 @@
-import { useState } from 'react';
-import skills from '../../data/skills';
-import type { SkillCategory } from '../../types';
-import SkillCard from './SkillCard';
-import SkillsInfoCard from './SkillsInfoCard';
+import skillGroups from '../../data/skills';
+import { Section, SectionHeading } from '../layout';
+import { Badge } from '../ui';
 
 const Skills = () => {
-  const [selectedSkill, setSelectedSkill] = useState<SkillCategory>(skills[0]);
-
-  const handleSelectSkill = (skill: SkillCategory) => {
-    setSelectedSkill(skill);
-  };
-
   return (
-    <div id="skills" className="flex flex-col items-center my-8">
-      <h1 className=" text-4xl font-bold text-gray-700 mb-[1.75rem] md:mb-[2rem]">My Skills</h1>
-      <div className="md:flex">
-        <div className="flex md:flex-col">
-          {skills.map((skill) => (
-            <SkillCard
-              key={skill.title}
-              icon={skill.icon}
-              title={skill.title}
-              isActive={selectedSkill.title === skill.title}
-              onClick={() => handleSelectSkill(skill)}
-            />
-          ))}
-        </div>
-        <div>
-          <SkillsInfoCard skills={selectedSkill.skills} />
-        </div>
+    <Section id="skills">
+      <SectionHeading
+        eyebrow="Technical"
+        title="Skills"
+        subtitle="Technologies I use in production and side projects."
+      />
+      <div className="grid gap-8 md:grid-cols-3">
+        {skillGroups.map((group) => (
+          <div key={group.title}>
+            <h3 className="mb-4 font-mono text-sm font-medium uppercase tracking-wider text-accent">
+              {group.title}
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <Badge key={item}>{item}</Badge>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
+    </Section>
   );
 };
 

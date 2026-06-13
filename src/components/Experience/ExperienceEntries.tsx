@@ -5,23 +5,35 @@ interface ExperienceEntriesProps {
   date: string;
   title: string;
   role: string;
-  desc: string;
+  bullets: string[];
   icon: ReactNode;
 }
 
-const ExperienceEntries = ({ date, title, role, desc, icon }: ExperienceEntriesProps) => {
+const ExperienceEntries = ({ date, title, role, bullets, icon }: ExperienceEntriesProps) => {
   return (
     <VerticalTimelineElement
       className="vertical-timeline-element--work"
-      contentStyle={{ background: '#f2f2f2', color: '#000000' }}
-      contentArrowStyle={{ borderRight: '7px solid  #92a0a0' }}
-      iconStyle={{ background: '#ffffff' }}
+      contentStyle={{
+        background: '#FFFFFF',
+        color: '#171717',
+        border: '1px solid #E5E5E5',
+        boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+      }}
+      contentArrowStyle={{ borderRight: '7px solid #FFFFFF' }}
+      iconStyle={{ background: '#2563EB', color: '#FFFFFF' }}
       date={date}
       icon={icon}
     >
-      <h3 className="text-l font-bold"> {title} </h3>
-      <h3 className="text-l font-semibold"> {role} </h3>
-      <h3 className="text-l "> {desc} </h3>
+      <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+      <p className="mt-1 text-sm font-medium text-muted">{role}</p>
+      <ul className="mt-4 flex flex-col gap-2 text-sm leading-relaxed text-muted">
+        {bullets.map((bullet) => (
+          <li key={bullet} className="flex gap-2">
+            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            <span>{bullet}</span>
+          </li>
+        ))}
+      </ul>
     </VerticalTimelineElement>
   );
 };

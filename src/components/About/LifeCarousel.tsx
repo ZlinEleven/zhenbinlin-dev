@@ -73,7 +73,7 @@ const LifeCarousel = () => {
             onMouseLeave={() => setIsHovered(false)}
         >
             {/* Main Carousel Container */}
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-foreground shadow-sm">
                 {/* Image Container */}
                 <div
                     className="flex transition-transform duration-700 ease-out h-80 sm:h-96"
@@ -88,6 +88,8 @@ const LifeCarousel = () => {
                                             key={i}
                                             src={src}
                                             alt={`${image.alt} ${i + 1}`}
+                                            loading="lazy"
+                                            decoding="async"
                                             className="flex-1 h-full object-cover"
                                         />
                                     ))}
@@ -134,7 +136,7 @@ const LifeCarousel = () => {
                 {/* Progress Bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-white/20">
                     <div
-                        className="h-full bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-700 ease-out"
+                        className="h-full bg-accent transition-all duration-700 ease-out"
                         style={{ width: `${((currentIndex + 1) / lifeImages.length) * 100}%` }}
                     ></div>
                 </div>
@@ -147,13 +149,13 @@ const LifeCarousel = () => {
                         key={index}
                         onClick={() => goToSlide(index)}
                         className={`relative transition-all duration-300 ${index === currentIndex
-                            ? 'w-8 h-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full'
-                            : 'w-3 h-3 bg-white/30 hover:bg-white/50 rounded-full hover:scale-110'
+                            ? 'w-8 h-3 bg-accent rounded-full'
+                            : 'w-3 h-3 bg-border hover:bg-muted/40 rounded-full'
                             }`}
                         aria-label={`Go to slide ${index + 1}`}
                     >
                         {index === currentIndex && (
-                            <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-pulse"></div>
+                            <div className="absolute inset-0 rounded-full bg-accent/80 animate-pulse"></div>
                         )}
                     </button>
                 ))}
@@ -161,7 +163,7 @@ const LifeCarousel = () => {
 
             {/* Slide Counter */}
             <div className="text-center mt-4">
-                <span className="text-white/60 text-sm font-medium">
+                <span className="text-sm font-medium text-muted">
                     {currentIndex + 1} / {lifeImages.length}
                 </span>
             </div>

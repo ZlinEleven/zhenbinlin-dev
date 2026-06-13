@@ -1,22 +1,25 @@
-import Navbar from "./components/Navbar";
-import Experience from "./components/Experience/Experience";
-import About from "./components/About/About";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer/Footer";
-import Skills from "./components/Skills/Skills";
-import Education from "./components/Education/Education";
-
+import Navbar from './components/Navbar';
+import About from './components/About/About';
+import Projects from './components/Projects/Projects';
+import Experience from './components/Experience/Experience';
+import Skills from './components/Skills/Skills';
+import Education from './components/Education/Education';
+import Contact from './components/Contact';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-      <About/>
-      <Education/>
-      <Skills/>
-      <Experience/>
-      <Contact/>
-      <Footer/>
+    <div className="min-h-screen bg-background text-foreground">
+      <Navbar />
+      <main>
+        <About />
+        <Projects />
+        <Experience />
+        <Skills />
+        <Education />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }

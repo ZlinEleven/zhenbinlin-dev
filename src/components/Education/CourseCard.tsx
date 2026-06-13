@@ -10,41 +10,50 @@ interface CourseCardProps {
 
 const CourseCard = ({ title, courseNum, grade, desc }: CourseCardProps) => {
   const [descOpen, setDescOpen] = useState(false);
-  const toggleDesc = () => setDescOpen(!descOpen);
 
   if (courseNum === undefined) {
-    return (
-      <div className="flex justify-center border-t-2 border-b-2 px-4 border-gray-300 items-center hover:bg-gray-700 hover:text-white duration-300 py-3 text-green-700">
-        {title}
-      </div>
-    );
+    return null;
   }
 
   return (
-    <div className="flex flex-col">
-      <div
-        className={`flex border-t-2 border-b-2 px-4 border-gray-300 items-center ${grade === 'In progress...' ? 'text-yellow-700' : 'text-green-700'} hover:bg-gray-700 hover:text-white duration-300 py-3`}
-      >
-        <p className="absolute">{courseNum}</p>
-        <p className="ml-[25%] md:ml-[20%] w-[25%] md:w-[350px] truncate">{title}</p>
-        <p className="ml-[5%] w-[30%]">{grade}</p>
-        <p
-          className="hidden md:flex cursor-pointer border-2 border-black rounded-full p-2"
-          onClick={toggleDesc}
-        >
-          Description
-        </p>
-        <p
-          className={`flex md:hidden cursor-pointer border-2 border-black rounded-full p-2 ${descOpen ? 'rotate-180' : 'rotate-0'} duration-300`}
-          onClick={toggleDesc}
-        >
-          <FaAngleDown />
-        </p>
-      </div>
-      <div className={`${descOpen ? 'flex' : 'hidden'} p-4`}>
-        <p>{desc}</p>
-      </div>
-    </div>
+    <>
+      <tr className="border-b border-border">
+        <td className="w-24 px-4 py-3 align-middle font-mono text-xs text-muted">{courseNum}</td>
+        <td className="px-4 py-3 align-middle text-foreground">{title}</td>
+        <td className="w-16 px-4 py-3 align-middle text-muted">{grade}</td>
+        <td className="hidden w-20 px-4 py-3 align-middle sm:table-cell">
+          {desc && (
+            <button
+              type="button"
+              onClick={() => setDescOpen(!descOpen)}
+              className="text-xs font-medium text-accent"
+              aria-expanded={descOpen}
+            >
+              Details
+            </button>
+          )}
+        </td>
+        <td className="w-10 px-4 py-3 align-middle sm:hidden">
+          {desc && (
+            <button
+              type="button"
+              onClick={() => setDescOpen(!descOpen)}
+              className="text-accent"
+              aria-label="Toggle description"
+            >
+              <FaAngleDown className={`transition-transform ${descOpen ? 'rotate-180' : ''}`} />
+            </button>
+          )}
+        </td>
+      </tr>
+      {descOpen && desc && (
+        <tr className="border-b border-border bg-background">
+          <td colSpan={5} className="px-4 py-3 text-sm leading-relaxed text-muted">
+            {desc}
+          </td>
+        </tr>
+      )}
+    </>
   );
 };
 

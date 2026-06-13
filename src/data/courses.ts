@@ -23,7 +23,7 @@ const courses: CoursesBySemester = {
     ],
     "Spring 2023 (Freshman)": [
         {
-            title: "System Funcamentals",
+            title: "Systems Fundamentals I",
             courseNum: "CSE220",
             grade: "A-",
             desc: "Introduces systems-level programming concepts using the C language and assembly language, and explores the correspondence of programming constructs in these languages. Topics include internal data representation, basic instructions and control structures, bitwise operations, arithmetic operations, memory management, pointers, function calls and parameter passing, linking and loading. Included is an overview of computer architecture and organization topics, including von Neumann architecture, the memory hierarchy, and basics of pipelining."
@@ -43,7 +43,7 @@ const courses: CoursesBySemester = {
     ],
     "Fall 2023 (Sophomore)": [
         {
-            title: "System Fundamentals",
+            title: "Systems Fundamentals II",
             courseNum: "CSE320",
             grade: "B+",
             desc: "This course introduces C programming and essential concepts of operating systems, concurrency, and performance analysis, focused around several cross-cutting examples, such as memory management, error handling, and threaded programming. In this course, operating systems concepts are considered from the point of view of the application programmer, and the focus is on APIs for interacting with an operating system."
@@ -127,19 +127,19 @@ const courses: CoursesBySemester = {
         {
             title: "Technical Communications",
             courseNum: "CSE300",
-            grade: "In progress...",
+            grade: "A",
             desc: "Principles of professional technical communications for Computer Science and Information Systems majors. Topics include writing business communications, user manuals, press releases, literature reviews, and research abstracts. Persuasive oral communications and effective presentation techniques, to address a range of audiences, will also be covered."
         },
         {
             title: "Introduction to the Theory of Computation",
             courseNum: "CSE303",
-            grade: "In progress...",
+            grade: "A-",
             desc: "An introduction to the abstract notions encountered in machine computation. Topics include finite automata, regular expressions, and formal languages, with emphasis on regular and context-free grammars. Questions relating to what can and cannot be done by machines are covered by considering various models of computation, including Turing machines, recursive functions, and universal machines."
         },
         {
             title: "Software Engineering",
             courseNum: "CSE416",
-            grade: "In progress...",
+            grade: "A",
             desc: "Introduces the basic concepts and modern tools and techniques of software engineering. Emphasizes the development of reliable and maintainable software via system requirements and specifications, software design methodologies including object-oriented design, implementation, integration, and testing; software project management; life-cycle documentation; software maintenance; and consideration of human factor issues."
         },
     ],

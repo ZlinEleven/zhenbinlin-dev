@@ -3,9 +3,15 @@
 @tailwind utilities;
 
 @layer base {
-    li {
-        @apply px-4;
-        @apply cursor-pointer;
-    }
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent/20 text-foreground;
+  }
+}

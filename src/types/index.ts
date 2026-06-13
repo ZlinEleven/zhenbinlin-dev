@@ -10,27 +10,13 @@ export interface Experience {
   date: string;
   title: string;
   role: string;
-  desc: string;
+  bullets: string[];
   icon: ReactNode;
 }
 
-export interface SkillItem {
-  name: string;
-  icon: string;
-  percentage: number;
-}
-
-export interface SkillCategory {
+export interface SkillGroup {
   title: string;
-  icon: string;
-  skills: SkillItem[];
-}
-
-export interface SocialLink {
-  name: string;
-  background: string;
-  link: string;
-  icon: ReactNode;
+  items: string[];
 }
 
 export interface Course {

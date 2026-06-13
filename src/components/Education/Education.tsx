@@ -1,63 +1,109 @@
 import { useState } from 'react';
 import sbuLogo from '../../assets/images/sbu-logo.png';
 import courses from '../../data/courses';
+import { Section, SectionHeading } from '../layout';
+import { Card } from '../ui';
 import CourseCard from './CourseCard';
+
+const honors = [
+  'Magna Cum Laude',
+  'Drs. Stange and Trillo Scholar',
+  'Spectrum Scholar',
+];
 
 const Education = () => {
   const [showCoursework, setShowCoursework] = useState(false);
-  const toggleCoursework = () => setShowCoursework(!showCoursework);
-
-  const coursework = [];
-  for (const [semester, semesterCourses] of Object.entries(courses).reverse()) {
-    coursework.push(
-      <div key={semester} className="flex py-2 justify-center font-bold text-green-700">
-        {semester}
-      </div>
-    );
-    semesterCourses.forEach((course) => {
-      coursework.push(
-        <CourseCard
-          key={course.title}
-          title={course.title}
-          courseNum={course.courseNum}
-          grade={course.grade}
-          desc={course.desc}
-        />
-      );
-    });
-  }
 
   return (
-    <div id="education" className="flex flex-col items-center my-8">
-      <h1 className=" text-4xl font-bold text-gray-700 mb-[1.75rem] md:mb-[2rem]">My Education</h1>
-      <div className="flex flex-col w-[95vw] md:w-[40rem] bg-gray-100 rounded-xl border-gray-300 border-[2px]">
-        <div className="flex px-16 py-4 justify-center">
-          <img src={sbuLogo} alt="sbu-logo" className="w-28 h-28 mr-4" />
-          <div className="flex flex-col justify-between font-bold">
-            <p className="text-xl">Stony Brook University</p>
-            <p className="text-lg">B.S, Computer Science</p>
-            <p>Expected BS Graduation: May 2026</p>
-            <p>GPA: 3.79/4.0</p>
+    <Section id="education">
+      <SectionHeading
+        eyebrow="Background"
+        title="Education"
+        subtitle="Undergraduate at Stony Brook, graduate study at Georgia Tech."
+      />
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+          <p className="font-semibold text-foreground">Georgia Institute of Technology</p>
+          <p className="mt-1 text-muted">M.S., Computer Science</p>
+          <p className="mt-3 text-sm text-muted">Starting Fall 2026 · Atlanta, GA</p>
+        </Card>
+
+        <Card>
+          <div className="flex gap-4">
+            <img src={sbuLogo} alt="Stony Brook University logo" className="size-16 shrink-0 object-contain" />
+            <div>
+              <p className="font-semibold text-foreground">Stony Brook University</p>
+              <p className="mt-1 text-muted">B.S., Computer Science</p>
+              <p className="mt-3 text-sm text-muted">May 2026 · GPA 3.8/4.0</p>
+            </div>
           </div>
-        </div>
-        <button
-          onClick={toggleCoursework}
-          className={`border-2 px-6 py-3 mb-4 mx-auto flex justify-center rounded-xl ${showCoursework ? 'bg-gray-300' : 'bg-gray-100'} hover:bg-gray-300 duration-500`}
-        >
-          Relevant Courseworks
-        </button>
-        <div
-          className={`${showCoursework ? 'flex flex-col' : 'hidden'} border-t-[2px] border-gray-300`}
-        >
-          <div className="flex font-bold text-sm py-3 px-4 bg-gray-400 items-center">
-            <p className="absolute w-[20%]"> Course Code</p>
-            <p className="ml-[25%] md:ml-[20%] w-[25%] md:w-[235px]">Course Name</p>
-            <p className="ml-[5%]">Status</p>
-          </div>
-          {coursework}
-        </div>
+          <ul className="mt-4 flex flex-col gap-1.5 text-sm text-muted">
+            {honors.map((honor) => (
+              <li key={honor} className="flex gap-2">
+                <span className="text-accent" aria-hidden="true">
+                  ·
+                </span>
+                {honor}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-muted">
+            TA: CSE 220 (Systems Fundamentals), CSE 316 (Software Engineering)
+          </p>
+        </Card>
       </div>
-    </div>
+
+      <div className="mt-8">
+        <button
+          type="button"
+          onClick={() => setShowCoursework(!showCoursework)}
+          className="text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+        >
+          {showCoursework ? 'Hide relevant coursework' : 'View relevant coursework'}
+        </button>
+        {showCoursework && (
+          <Card className="mt-4 overflow-hidden p-0">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[32rem] border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-border bg-background text-left text-xs font-semibold uppercase tracking-wide text-muted">
+                    <th className="w-24 px-4 py-3">Code</th>
+                    <th className="px-4 py-3">Course</th>
+                    <th className="w-16 px-4 py-3">Grade</th>
+                    <th className="hidden w-20 px-4 py-3 sm:table-cell" aria-label="Details" />
+                    <th className="w-10 px-4 py-3 sm:hidden" aria-label="Details" />
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(courses)
+                    .reverse()
+                    .flatMap(([semester, semesterCourses]) => [
+                      <tr key={semester}>
+                        <td
+                          colSpan={5}
+                          className="border-b border-border bg-background/60 px-4 py-2 text-center text-sm font-semibold text-accent"
+                        >
+                          {semester}
+                        </td>
+                      </tr>,
+                      ...semesterCourses.map((course) => (
+                        <CourseCard
+                          key={`${semester}-${course.courseNum}`}
+                          title={course.title}
+                          courseNum={course.courseNum}
+                          grade={course.grade}
+                          desc={course.desc}
+                        />
+                      )),
+                    ])}
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        )}
+      </div>
+    </Section>
   );
 };
 

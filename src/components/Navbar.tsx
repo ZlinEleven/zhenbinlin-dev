@@ -1,112 +1,96 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-scroll';
-import navbarTabs from '../data/navbarTabs';
-import socials from '../data/socials';
-import SocialsEntry from './SocialsEntry';
+import { Button } from './ui';
+import navbarTabs, { RESUME_URL, SCROLL_OFFSET } from '../data/navbarTabs';
+
+const navLinkClass =
+  'cursor-pointer text-sm font-medium text-muted transition-colors hover:text-foreground';
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
-
-  const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
-  const [activeTabIndex, setActiveTabIndex] = useState<number | null>(null);
-  const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
-  const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
-
-  useEffect(() => {
-    if (activeTabIndex === null) {
-      return;
-    }
-
-    const setTabPosition = () => {
-      const currentTab = tabsRef.current[activeTabIndex];
-      setTabUnderlineLeft(currentTab?.offsetLeft ?? 0);
-      setTabUnderlineWidth(currentTab?.clientWidth ?? 0);
-    };
-
-    setTabPosition();
-  }, [activeTabIndex]);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const closeMobile = () => setMobileOpen(false);
 
   return (
-    <div className="fixed bg-[#0a192f] md:bg-transparent  w-full z-20 flex justify-center items-center px-4 text-white">
-      <div className="hidden md:flex w-[550px] py-4 rounded-b-3xl bg-[#0a192f] mt-[-50px] hover:mt-[0px] duration-500">
-        <div className="hidden md:flex md:w-[500px] mx-auto justify-between h-12 bg-[#cfd1d4] px-4 text-gray-500 rounded-3xl backdrop-blur-sm">
-          <span
-            className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-3xl py-2 transition-all duration-300"
-            style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
-          >
-            <span className="h-full w-full rounded-3xl bg-[#f3f4f6]" />
-          </span>
-          {navbarTabs.map((tab, index) => {
-            const isActive = activeTabIndex === index;
+    <header className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-content items-center justify-between px-6">
+        <Link
+          to="about"
+          spy={true}
+          smooth={true}
+          offset={SCROLL_OFFSET}
+          duration={500}
+          className="cursor-pointer text-base font-semibold tracking-tight text-foreground"
+        >
+          Zhenbin Lin
+        </Link>
 
-            return (
-              <button
-                key={index}
-                ref={(el) => {
-                  tabsRef.current[index] = el;
-                }}
-                className={`${isActive ? 'text-black' : 'hover:text-black '} cursor-pointer py-2 my-auto rounded-full px-4 hover:scale-110 duration-100`}
-              >
-                <Link
-                  onClick={() => setActiveTabIndex(index)}
-                  to={tab.id}
-                  spy={true}
-                  smooth={true}
-                  offset={tab.offset}
-                  duration={500}
-                >
-                  {tab.name}
-                </Link>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <div onClick={handleClick} className="md:hidden z-10 py-8 cursor-pointer">
-        {!nav ? <FaBars /> : <FaTimes />}
-      </div>
-
-      <ul
-        className={
-          !nav
-            ? 'hidden'
-            : 'md:hidden absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center'
-        }
-      >
-        {navbarTabs.map((tab) => (
-          <li key={tab.id} className="my-6 text-4xl cursor-pointer">
+        <nav className="hidden items-center gap-6 md:flex">
+          {navbarTabs.map((tab) => (
             <Link
-              onClick={handleClick}
+              key={tab.id}
               to={tab.id}
               spy={true}
               smooth={true}
               offset={tab.offset}
               duration={500}
+              activeClass="!text-accent"
+              className={navLinkClass}
             >
-              {' '}
-              {tab.name}{' '}
+              {tab.name}
             </Link>
-          </li>
-        ))}
-      </ul>
-
-      <div className="hidden md:flex fixed flex-col top-[35%] left-0 z-10">
-        <ul>
-          {socials.map((social) => (
-            <SocialsEntry
-              key={social.name}
-              background={social.background}
-              link={social.link}
-              text={social.name}
-              icon={social.icon}
-            />
           ))}
-        </ul>
+          <Button variant="secondary" href={RESUME_URL} target="_blank" rel="noopener noreferrer">
+            Resume
+          </Button>
+        </nav>
+
+        <button
+          type="button"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="rounded-lg p-2 text-foreground transition-colors hover:bg-background md:hidden"
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
+        >
+          {mobileOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+        </button>
       </div>
-    </div>
+
+      {mobileOpen && (
+        <nav className="border-t border-border bg-surface px-6 py-4 md:hidden">
+          <ul className="flex flex-col gap-1">
+            {navbarTabs.map((tab) => (
+              <li key={tab.id}>
+                <Link
+                  to={tab.id}
+                  spy={true}
+                  smooth={true}
+                  offset={tab.offset}
+                  duration={500}
+                  activeClass="!text-accent"
+                  className={`block rounded-lg px-3 py-2.5 ${navLinkClass}`}
+                  onClick={closeMobile}
+                >
+                  {tab.name}
+                </Link>
+              </li>
+            ))}
+            <li className="pt-2">
+              <Button
+                variant="secondary"
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
+                onClick={closeMobile}
+              >
+                Resume
+              </Button>
+            </li>
+          </ul>
+        </nav>
+      )}
+    </header>
   );
 };
 

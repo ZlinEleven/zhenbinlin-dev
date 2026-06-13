@@ -1,39 +1,61 @@
+import { Section, SectionHeading } from './layout';
+import { Button } from './ui';
+
+const EMAIL = 'zhenblin2004@gmail.com';
+
 const Contact = () => {
   return (
-    <div id="contact" className="w-full h-screen flex justify-center items-center p-4">
-      <form
-        action="https://getform.io/f/77d35fe9-c101-4db8-8498-a98838ad1e30"
-        method="POST"
-        className="flex flex-col max-w-[600px] w-full"
-      >
-        <div className="w-full flex flex-col items-center">
-          <p className="text-4xl font-bold text-gray-700">Contact Me</p>
-          <div className="flex md:flex-row text-gray-700 py-4">
-            <p className="text-center">
-              Feel free to contact me at <u>zhenbin2004@gmail.com</u> or submit the form below
-            </p>
-          </div>
-        </div>
-        <input
-          className="bg-gray-100 p-3 my-3 rounded-md border border-gray-300"
-          type="text"
-          placeholder="Email"
-          name="email"
-        />
-        <textarea
-          className="bg-gray-100 p-3 my-3 rounded-md border border-gray-300"
-          placeholder="Your message"
-          rows={7}
-          name="message"
-        />
-        <button
-          className="text-white border-2 px-6 py-3 mx-auto flex justify-center rounded-full bg-[#0a192f] hover:bg-pink-600 duration-500"
-          type="submit"
+    <Section id="contact" className="border-t border-border bg-surface">
+      <SectionHeading
+        eyebrow="Get in touch"
+        title="Contact"
+        subtitle="Open to opportunities, collaborations, and conversations about software engineering."
+      />
+
+      <div className="mx-auto max-w-lg">
+        <p className="mb-8 text-center text-muted">
+          Email me at{' '}
+          <a href={`mailto:${EMAIL}`} className="font-medium text-accent hover:text-accent-hover">
+            {EMAIL}
+          </a>{' '}
+          or send a message below.
+        </p>
+
+        <form
+          action="https://getform.io/f/77d35fe9-c101-4db8-8498-a98838ad1e30"
+          method="POST"
+          className="flex flex-col gap-4"
         >
-          Send message
-        </button>
-      </form>
-    </div>
+          <div>
+            <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-foreground">
+              Email
+            </label>
+            <input
+              id="email"
+              className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              type="email"
+              name="email"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-foreground">
+              Message
+            </label>
+            <textarea
+              id="message"
+              className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              rows={5}
+              name="message"
+              required
+            />
+          </div>
+          <Button type="submit" className="self-center">
+            Send message
+          </Button>
+        </form>
+      </div>
+    </Section>
   );
 };
 

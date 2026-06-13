@@ -30,7 +30,7 @@ const LastUpdated = () => {
   };
 
   return (
-    <div className="text-center text-sm text-[#8892b0] mt-4">
+    <div className="text-center text-sm text-muted pb-2">
       <p>Last updated: {formatDate(lastUpdated)}</p>
     </div>
   );
