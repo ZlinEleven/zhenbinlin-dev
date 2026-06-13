@@ -1,24 +1,23 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-// Generate build timestamp
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const buildTimestamp = new Date().toISOString();
-
-// Create public directory if it doesn't exist
 const publicDir = path.join(__dirname, '..', 'public');
+
 if (!fs.existsSync(publicDir)) {
-    fs.mkdirSync(publicDir, { recursive: true });
+  fs.mkdirSync(publicDir, { recursive: true });
 }
 
-// Write timestamp to a JSON file in public directory
 const timestampData = {
-    buildTimestamp: buildTimestamp,
-    lastUpdated: new Date(buildTimestamp).toISOString().split('T')[0] // YYYY-MM-DD format
+  buildTimestamp,
+  lastUpdated: new Date(buildTimestamp).toISOString().split('T')[0],
 };
 
 fs.writeFileSync(
-    path.join(publicDir, 'build-info.json'),
-    JSON.stringify(timestampData, null, 2)
+  path.join(publicDir, 'build-info.json'),
+  JSON.stringify(timestampData, null, 2)
 );
 
 console.log('Build timestamp generated:', buildTimestamp);

@@ -1,4 +1,3 @@
-import React from 'react'
 import FooterCards from './FooterCards'
 import LastUpdated from './LastUpdated'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

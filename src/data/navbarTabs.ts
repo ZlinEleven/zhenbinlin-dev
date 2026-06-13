@@ -1,4 +1,6 @@
-let navbarTabs = [
+import type { NavbarTab } from '../types';
+
+const navbarTabs: NavbarTab[] = [
     {
       id: "about",
       name: "About",

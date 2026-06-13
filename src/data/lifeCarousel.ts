@@ -1,3 +1,4 @@
+import type { LifeCarouselSlide } from '../types';
 
 import image11 from '../assets/images/lifeImages/image11.jpg';
 import image21 from '../assets/images/lifeImages/image21.jpg';
@@ -34,7 +35,7 @@ import image123 from '../assets/images/lifeImages/image123.jpg';
 import image124 from '../assets/images/lifeImages/image124.jpg';
 
 // Life images grouped by prefix
-let lifeImages = [
+const lifeImages: LifeCarouselSlide[] = [
     {
         src: [image11],
         alt: 'Life images group 1',

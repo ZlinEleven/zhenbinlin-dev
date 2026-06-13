@@ -1,4 +1,6 @@
-let courses = {
+import type { CoursesBySemester } from '../types';
+
+const courses: CoursesBySemester = {
     "Fall 2022 (Freshman)": [
         {
             title: "Foundations of Computer Science",

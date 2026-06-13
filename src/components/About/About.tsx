@@ -1,4 +1,3 @@
-import React from 'react';
 import avatar from '../../assets/images/formal_profile_picture.jpg';
 import { FaRegArrowAltCircleRight } from 'react-icons/fa';
 import { Link } from 'react-scroll';
@@ -6,7 +5,7 @@ import LifeCarousel from '../About/LifeCarousel';
 
 const About = () => {
     return (
-        <div name='about' className="w-full min-h-screen bg-[#0a192f] py-16 cursor-default">
+        <div id="about" className="w-full min-h-screen bg-[#0a192f] py-16 cursor-default">
             <div className='max-w-[1000px] mx-auto px-4 mt-4'>
                 {/* Profile and Introduction Section */}
                 <div className="text-center mb-16">

@@ -1,9 +1,10 @@
+import type { Experience } from '../types';
 import { MdOutlineWork } from "react-icons/md";
 import { FaLightbulb } from "react-icons/fa";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { FaRobot } from "react-icons/fa6";
 
-let experiences = [
+const experiences: Experience[] = [
     {
         date: "Jun 2025 - Aug 2025",
         title: "Capital One - Internship",

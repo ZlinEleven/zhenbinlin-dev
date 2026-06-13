@@ -1,3 +1,4 @@
+import type { SkillCategory } from '../types';
 import languagesIcon from '../assets/images/skills/languages-icon.png';
 import technologiesIcon from '../assets/images/skills/technologies-icon.png';
 import toolsIcon from '../assets/images/skills/tools-icon.png';
@@ -23,7 +24,7 @@ import cssIcon from '../assets/images/skills/css-icon.svg';
 import mongoDBIcon from '../assets/images/skills/mongodb-icon.svg';
 import githubIcon from '../assets/images/skills/github-icon.svg';
 
-let skills = [
+const skills: SkillCategory[] = [
     {
         title: "Languages",
         icon: languagesIcon,
@@ -151,10 +152,7 @@ let skills = [
 ]
 
 skills.forEach((skillCategory) => {
-    skillCategory.skills.sort((a, b) => {
-        console.log()
-        return b.percentage - a.percentage
-    })
-})
+    skillCategory.skills.sort((a, b) => b.percentage - a.percentage);
+});
 
 export default skills;

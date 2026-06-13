@@ -1,7 +1,8 @@
+import type { SocialLink } from '../types';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { ImProfile } from "react-icons/im";
 
-let socials = [
+const socials: SocialLink[] = [
     {
         name: "Linkedin",
         background: "bg-[#146bc0]",

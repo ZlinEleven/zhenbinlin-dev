@@ -5,7 +5,7 @@ import experiences from "../../data/experiences";
 
 const Experience = () => {
     return (
-        <div name="experience">
+        <div id="experience">
             <h1 className="w-full flex justify-center text-4xl font-bold text-gray-700 mt-8">My Experience</h1>
             <VerticalTimeline lineColor="#8c8c8c" >
                 {/* {renderExp()} */}

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import lifeImages from '../../data/lifeCarousel';
 
 const LifeCarousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
-    const scrollRefs = useRef([]);
+    const scrollRefs = useRef<(HTMLDivElement | null)[]>([]);
     const animationRunning = useRef(false);
 
     useEffect(() => {
@@ -14,7 +14,7 @@ const LifeCarousel = () => {
 
             // Start scroll animation if needed
             if (scrollRefs.current[currentIndex]) {
-                const container = scrollRefs.current[currentIndex];
+                const container = scrollRefs.current[currentIndex]!;
                 const maxScroll = container.scrollWidth - container.clientWidth;
                 if (maxScroll > 0) {
                     animationRunning.current = true;
@@ -50,7 +50,7 @@ const LifeCarousel = () => {
         }
     }, [isHovered, currentIndex]);
 
-    const goToSlide = (index) => {
+    const goToSlide = (index: number) => {
         setCurrentIndex(index);
     };
 
@@ -81,7 +81,7 @@ const LifeCarousel = () => {
                 >
                     {lifeImages.map((image, index) => (
                         <div key={index} className="w-full flex-shrink-0 relative">
-                            <div ref={(el) => scrollRefs.current[index] = el} className="w-full h-full overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                            <div ref={(el) => { scrollRefs.current[index] = el; }} className="w-full h-full overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                                 <div className="flex h-full">
                                     {image.src.map((src, i) => (
                                         <img
