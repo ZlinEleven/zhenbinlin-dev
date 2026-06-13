@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import Reveal from './Reveal';
 
 interface SectionProps {
   id: string;
@@ -12,7 +13,7 @@ const Section = ({ id, children, className = '' }: SectionProps) => {
       id={id}
       className={`scroll-mt-16 max-w-content mx-auto px-6 py-24 ${className}`.trim()}
     >
-      {children}
+      <Reveal>{children}</Reveal>
     </section>
   );
 };

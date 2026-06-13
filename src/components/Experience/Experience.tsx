@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { VerticalTimeline } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import { beyondWorkExperiences, primaryExperiences } from '../../data/experiences';
-import { Section, SectionHeading } from '../layout';
+import { Section, SectionHeading, Collapse } from '../layout';
 import { Button } from '../ui';
 import ExperienceEntries from './ExperienceEntries';
 
@@ -30,10 +30,16 @@ const Experience = () => {
       </VerticalTimeline>
 
       <div className="mt-8 flex flex-col items-center gap-4">
-        <Button variant="ghost" onClick={() => setShowBeyondWork(!showBeyondWork)}>
+        <Button variant="ghost" onClick={() => setShowBeyondWork(!showBeyondWork)} className="gap-1.5">
           {showBeyondWork ? 'Hide beyond work' : 'Show beyond work'}
+          <span
+            className={`transition-transform duration-300 motion-reduce:transition-none ${showBeyondWork ? 'rotate-180' : ''}`}
+            aria-hidden="true"
+          >
+            ▾
+          </span>
         </Button>
-        {showBeyondWork && (
+        <Collapse open={showBeyondWork} className="w-full">
           <VerticalTimeline lineColor="#E5E5E5" className="w-full">
             {beyondWorkExperiences.map((experience) => (
               <ExperienceEntries
@@ -46,7 +52,7 @@ const Experience = () => {
               />
             ))}
           </VerticalTimeline>
-        )}
+        </Collapse>
       </div>
     </Section>
   );

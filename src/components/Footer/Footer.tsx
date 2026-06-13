@@ -45,7 +45,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={name}
-              className="rounded-lg p-2 text-muted transition-colors hover:bg-background hover:text-accent"
+              className="rounded-lg p-2 text-muted transition-[color,transform,background-color] hover:-translate-y-0.5 hover:scale-110 hover:bg-background hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:transform-none"
             >
               <Icon size={20} />
             </a>

@@ -1,6 +1,6 @@
 import type { CoursesBySemester } from '../types';
 
-const courses: CoursesBySemester = {
+const sbuCourses: CoursesBySemester = {
     "Fall 2022 (Freshman)": [
         {
             title: "Foundations of Computer Science",
@@ -145,4 +145,7 @@ const courses: CoursesBySemester = {
     ],
 }
 
-export default courses;
+export const gtCourses: CoursesBySemester = {};
+
+export { sbuCourses };
+export default sbuCourses;

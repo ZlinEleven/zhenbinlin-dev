@@ -7,11 +7,171 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
 
   ::selection {
     @apply bg-accent/20 text-foreground;
+  }
+}
+
+@layer components {
+  .school-card {
+    @apply rounded-xl p-6 shadow-sm transition-all duration-200 motion-reduce:transition-none;
+    border: 1px solid;
+    border-left-width: 4px;
+  }
+
+  .school-card:hover {
+    @apply -translate-y-0.5 shadow-md motion-reduce:transform-none;
+  }
+
+  .school-card-sbu {
+    border-color: #fecdd3;
+    border-left-color: #e57373;
+    background: linear-gradient(135deg, #fff5f5 0%, #fffafa 45%, #ffffff 100%);
+  }
+
+  .school-card-sbu:hover {
+    border-color: #fca5a5;
+  }
+
+  .school-card-gt {
+    border-color: #fde68a;
+    border-left-color: #c4ab6d;
+    background: linear-gradient(135deg, #fffbeb 0%, #fffdf5 45%, #ffffff 100%);
+  }
+
+  .school-card-gt:hover {
+    border-color: #fcd34d;
+  }
+
+  .coursework-panel {
+    @apply overflow-hidden rounded-xl border shadow-sm;
+    border-left-width: 4px;
+  }
+
+  .coursework-panel-sbu {
+    border-color: #fecdd3;
+    border-left-color: #e57373;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+  }
+
+  .coursework-panel-gt {
+    border-color: #fde68a;
+    border-left-color: #c4ab6d;
+    background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+  }
+
+  .coursework-placeholder {
+    @apply rounded-xl border p-6 shadow-sm;
+    border-left-width: 4px;
+  }
+
+  .coursework-placeholder-sbu {
+    border-color: #fecdd3;
+    border-left-color: #e57373;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+  }
+
+  .coursework-placeholder-gt {
+    border-color: #fde68a;
+    border-left-color: #c4ab6d;
+    background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+  }
+
+  .school-tab-active-sbu {
+    @apply shadow-sm ring-1;
+    background-color: #fff5f5;
+    color: #be123c;
+    --tw-ring-color: rgb(254 205 211 / 0.6);
+  }
+
+  .school-tab-active-gt {
+    @apply shadow-sm ring-1;
+    background-color: #fffbeb;
+    color: #1e3a5f;
+    --tw-ring-color: rgb(253 230 138 / 0.5);
+  }
+
+  .school-tab-inactive-sbu:hover {
+    background-color: rgb(255 245 245 / 0.8);
+    color: #be123c;
+  }
+
+  .school-tab-inactive-gt:hover {
+    background-color: rgb(255 251 235 / 0.8);
+    color: #1e3a5f;
+  }
+
+  .coursework-table-head-sbu {
+    border-bottom: 1px solid rgb(254 205 211 / 0.6);
+    background-color: #fff5f5;
+    color: #be123c;
+  }
+
+  .coursework-table-head-gt {
+    border-bottom: 1px solid rgb(253 230 138 / 0.5);
+    background-color: #fffbeb;
+    color: #1e3a5f;
+  }
+
+  .coursework-semester-sbu {
+    border-bottom: 1px solid rgb(254 205 211 / 0.4);
+    background-color: rgb(255 245 245 / 0.6);
+    color: #be123c;
+  }
+
+  .coursework-semester-gt {
+    border-bottom: 1px solid rgb(253 230 138 / 0.4);
+    background-color: rgb(255 251 235 / 0.6);
+    color: #1e3a5f;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out both;
+  }
+
+  @keyframes copy-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(37 99 235 / 0);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgb(37 99 235 / 0.25);
+    }
+  }
+
+  .animate-copy-pulse {
+    animation: copy-pulse 0.6s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .animate-copy-pulse {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 }

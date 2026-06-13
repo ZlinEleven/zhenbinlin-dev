@@ -18,7 +18,9 @@ const Skills = () => {
             </h3>
             <div className="flex flex-wrap gap-2">
               {group.items.map((item) => (
-                <Badge key={item}>{item}</Badge>
+                <Badge key={item} interactive>
+                  {item}
+                </Badge>
               ))}
             </div>
           </div>

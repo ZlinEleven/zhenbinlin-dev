@@ -10,7 +10,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const baseStyles =
-  'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50';
+  'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium transition-[color,transform,background-color,border-color] active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50';
 
 interface ButtonBaseProps {
   variant?: ButtonVariant;
