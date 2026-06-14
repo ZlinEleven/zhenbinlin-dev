@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-surface: #ffffff;
+    --color-foreground: #171717;
+    --color-border: #e5e5e5;
+    --color-accent: #2563eb;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -36,7 +43,7 @@
   .school-card-sbu {
     border-color: #fecdd3;
     border-left-color: #e57373;
-    background: linear-gradient(135deg, #fff5f5 0%, #fffafa 45%, #ffffff 100%);
+    background: linear-gradient(135deg, rgb(255 245 245 / 0.9) 0%, #ffffff 100%);
   }
 
   .school-card-sbu:hover {
@@ -46,7 +53,7 @@
   .school-card-gt {
     border-color: #fde68a;
     border-left-color: #c4ab6d;
-    background: linear-gradient(135deg, #fffbeb 0%, #fffdf5 45%, #ffffff 100%);
+    background: linear-gradient(135deg, rgb(255 251 235 / 0.9) 0%, #ffffff 100%);
   }
 
   .school-card-gt:hover {

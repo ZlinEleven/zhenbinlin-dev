@@ -1,19 +1,20 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-scroll';
 import { Button } from './ui';
 import navbarTabs, { RESUME_URL, SCROLL_OFFSET } from '../data/navbarTabs';
 
 const navLinkClass =
-  'relative z-10 cursor-pointer text-sm font-medium text-muted transition-colors hover:text-foreground';
+  'relative z-10 cursor-pointer rounded-md text-sm font-medium text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const activeTabRef = useRef('about');
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+  const mobileNavId = useId();
 
-  const closeMobile = () => setMobileOpen(false);
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
 
   const updateIndicator = useCallback((tabId: string) => {
     const navEl = navRef.current;
@@ -46,8 +47,33 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [updateIndicator]);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeMobile();
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [mobileOpen, closeMobile]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-md">
+      <a
+        href="#about"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none"
+      >
+        Skip to content
+      </a>
+
       <div className="mx-auto flex h-16 max-w-content items-center justify-between px-6">
         <Link
           to="about"
@@ -55,7 +81,7 @@ const Navbar = () => {
           smooth={true}
           offset={SCROLL_OFFSET}
           duration={500}
-          className="cursor-pointer text-base font-semibold tracking-tight text-foreground"
+          className="cursor-pointer rounded-md text-base font-semibold tracking-tight text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           onSetActive={() => handleSetActive('about')}
         >
           Zhenbin Lin
@@ -91,15 +117,17 @@ const Navbar = () => {
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="rounded-lg p-2 text-foreground transition-colors hover:bg-background md:hidden"
+          className="rounded-lg p-2 text-foreground transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background md:hidden"
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
+          aria-controls={mobileNavId}
         >
           {mobileOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
         </button>
       </div>
 
       <nav
+        id={mobileNavId}
         className={`overflow-hidden border-t border-border bg-surface transition-[max-height,opacity] duration-300 ease-out motion-reduce:transition-none md:hidden ${
           mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}

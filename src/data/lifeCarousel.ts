@@ -38,73 +38,73 @@ import image124 from '../assets/images/lifeImages/image124.jpg';
 const lifeImages: LifeCarouselSlide[] = [
     {
         src: [image11],
-        alt: 'Life images group 1',
+        alt: 'Childhood photo of Zhenbin Lin',
         caption: 'Baby Picture',
-        description: ':D'
+        description: 'Where it all started.'
     },
     {
         src: [image21, image22],
-        alt: 'Life images group 2',
+        alt: 'VEX World Championship 2022 tournament champions',
         caption: 'VEX World Championship',
         description: '2022 Opportunity Division Tournament Champions'
     },
     {
         src: [image31, image32],
-        alt: 'Life images group 3',
+        alt: 'High school graduation at Bronx High School of Science, Class of 2022',
         caption: 'High School Graduation',
         description: 'Bronx Highschool of Science CO \'22'
     },
     {
         src: [image41],
-        alt: 'Life images group 4',
+        alt: 'First day of college at Stony Brook University',
         caption: 'Freshman Year of College',
-        description: 'College day ones 🤧'
+        description: 'Starting undergrad at Stony Brook.'
     },
     {
         src: [image51],
-        alt: 'Life images group 5',
+        alt: 'First software engineering internship at a startup, Summer 2023',
         caption: 'First SWE Internship',
         description: 'Interned at a Startup! - Summer 2023'
     },
     {
         src: [image61, image62, image63, image64, image65, image66, image67],
-        alt: 'Life images group 6',
+        alt: 'IAC Fellowship and Angi software engineering internship, Summer 2024',
         caption: 'IAC Fellow & Angi SWE',
         description: 'Second SWE Internship & IAC Fellowship - Summer 2024'
     },
     {
         src: [image71, image72],
-        alt: 'Life images group 7',
+        alt: 'Chinese Association at Stony Brook events',
         caption: 'CASB',
         description: 'Joined Chinese Association at Stony Brook'
     },
     {
         src: [image81, image82, image83],
-        alt: 'Life images group 8',
+        alt: 'Spectrum Scholars Summit at Spectrum headquarters',
         caption: 'Spectrum Summit',
         description: 'Spectrum Scholars event at Spectrum HQ'
     },
     {
         src: [image91, image92, image93, image94],
-        alt: 'Life images group 9',
+        alt: 'Trip to China in 2024, first visit since 2015',
         caption: 'China Trip 2024',
         description: 'First time visiting China since 2015'
     },
     {
         src: [image101],
-        alt: 'Life images group 10',
+        alt: 'Birthday celebration at Haidilao',
         caption: 'Girlfriend\'s Birthday!',
         description: 'Celebration at Haidilao'
     },
     {
         src: [image111, image112, image113, image114, image115],
-        alt: 'Life images group 11',
+        alt: 'Capital One software engineering internship, Summer 2025',
         caption: 'Capital One SWE Internship',
         description: 'Got the return offer! - Summer 2025'
     },
     {
         src: [image121, image122, image123, image124],
-        alt: 'Life images group 12',
+        alt: 'Second Spectrum Scholar Summit',
         caption: '2nd Spectrum Summit',
         description: 'Spectrum Scholar Summit year 2'
     }

@@ -20,18 +20,19 @@ const LastUpdated = () => {
       });
   }, []);
 
-  const formatDate = (date: Date | null) => {
-    if (!date) return 'Loading...';
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
+  if (!lastUpdated) {
+    return null;
+  }
+
+  const formattedDate = lastUpdated.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   return (
-    <div className="text-center text-sm text-muted pb-2">
-      <p>Last updated: {formatDate(lastUpdated)}</p>
+    <div className="pb-2 text-center text-sm text-muted">
+      <p>Last updated: {formattedDate}</p>
     </div>
   );
 };

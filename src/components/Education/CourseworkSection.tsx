@@ -48,7 +48,7 @@ const CourseworkSection = () => {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+        className="inline-flex items-center gap-1.5 rounded-md text-sm font-medium text-accent transition-colors hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         {open ? 'Hide relevant coursework' : 'View relevant coursework'}
         <span
@@ -76,7 +76,7 @@ const CourseworkSection = () => {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setSchool(id)}
-                  className={`rounded-md px-4 py-1.5 text-sm font-medium text-muted transition-colors ${
+                  className={`rounded-md px-4 py-1.5 text-sm font-medium text-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                     isActive ? tabActiveClass[id] : tabInactiveClass[id]
                   }`}
                 >

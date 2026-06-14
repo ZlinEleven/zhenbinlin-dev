@@ -10,13 +10,16 @@ const Skills = () => {
         title="Skills"
         subtitle="Technologies I use in production and side projects."
       />
-      <div className="grid gap-8 md:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2">
         {skillGroups.map((group) => (
           <div key={group.title}>
-            <h3 className="mb-4 font-mono text-sm font-medium uppercase tracking-wider text-accent">
+            <h3 className="font-mono text-sm font-medium uppercase tracking-wider text-accent">
               {group.title}
             </h3>
-            <div className="flex flex-wrap gap-2">
+            {group.subtitle && (
+              <p className="mt-1 text-sm text-muted">{group.subtitle}</p>
+            )}
+            <div className="mt-4 flex flex-wrap gap-2">
               {group.items.map((item) => (
                 <Badge key={item} interactive>
                   {item}

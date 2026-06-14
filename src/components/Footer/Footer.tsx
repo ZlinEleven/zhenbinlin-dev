@@ -33,7 +33,7 @@ const Footer = () => {
         <div className="text-center sm:text-left">
           <p className="font-semibold text-foreground">Zhenbin Lin</p>
           <p className="mt-1 text-sm text-muted">
-            Software Engineer · Amazon · Capital One · GT MS CS
+            SDE Intern @ Amazon · SWE Intern @ Capital One · MS CS @ GT (2026)
           </p>
         </div>
 

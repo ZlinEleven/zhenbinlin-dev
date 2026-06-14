@@ -1,53 +1,47 @@
 export interface SkillGroup {
   title: string;
+  subtitle?: string;
   items: string[];
 }
 
 const skillGroups: SkillGroup[] = [
   {
-    title: 'Languages',
+    title: 'Production',
+    subtitle: 'Shipped in internships and side projects',
     items: [
       'Python',
       'Java',
-      'C',
-      'C++',
-      'JavaScript',
       'TypeScript',
       'SQL',
+      'Spring Boot',
+      'Node.js',
+      'React',
+      'AWS',
+      'Docker',
+      'Kubernetes',
+      'Redis',
+      'PostgreSQL',
+    ],
+  },
+  {
+    title: 'Also familiar with',
+    subtitle: 'Used in coursework, labs, and personal builds',
+    items: [
+      'JavaScript',
+      'C',
+      'C++',
       'Bash',
       'Kotlin',
       'Golang',
-    ],
-  },
-  {
-    title: 'Frameworks & Databases',
-    items: [
-      'PostgreSQL',
       'MongoDB',
-      'Redis',
-      'Spring Boot',
       'FastAPI',
-      'Node.js',
       'Next.js',
-      'React',
       'GraphQL',
-    ],
-  },
-  {
-    title: 'Infrastructure & Tools',
-    items: [
-      'AWS',
-      'SageMaker',
-      'CDK',
       'GCP',
       'Firebase',
-      'Docker',
-      'Kubernetes',
-      'Jenkins',
+      'SageMaker',
       'Jest',
-      'JUnit',
       'Git',
-      'Jira',
     ],
   },
 ];

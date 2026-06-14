@@ -14,13 +14,13 @@ const ExperienceEntries = ({ date, title, role, bullets, icon }: ExperienceEntri
     <VerticalTimelineElement
       className="vertical-timeline-element--work"
       contentStyle={{
-        background: '#FFFFFF',
-        color: '#171717',
-        border: '1px solid #E5E5E5',
+        background: 'var(--color-surface)',
+        color: 'var(--color-foreground)',
+        border: '1px solid var(--color-border)',
         boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
       }}
-      contentArrowStyle={{ borderRight: '7px solid #FFFFFF' }}
-      iconStyle={{ background: '#2563EB', color: '#FFFFFF' }}
+      contentArrowStyle={{ borderRight: '7px solid var(--color-surface)' }}
+      iconStyle={{ background: 'var(--color-accent)', color: '#FFFFFF' }}
       date={date}
       icon={icon}
     >

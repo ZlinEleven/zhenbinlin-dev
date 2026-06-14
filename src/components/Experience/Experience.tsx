@@ -16,7 +16,7 @@ const Experience = () => {
         title="Experience"
         subtitle="Production systems at Amazon, Capital One, and Angi."
       />
-      <VerticalTimeline lineColor="#E5E5E5">
+      <VerticalTimeline lineColor="var(--color-border)">
         {primaryExperiences.map((experience) => (
           <ExperienceEntries
             key={`${experience.title}-${experience.date}`}

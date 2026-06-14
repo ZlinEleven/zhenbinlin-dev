@@ -1,7 +1,6 @@
 import avatar from '../../assets/images/formal_profile_picture.jpg';
-import { Link } from 'react-scroll';
-import { RESUME_URL, SCROLL_OFFSET } from '../../data/navbarTabs';
-import { Button } from '../ui';
+import { RESUME_URL } from '../../data/navbarTabs';
+import { Button, ScrollLink } from '../ui';
 import LifeCarousel from './LifeCarousel';
 
 const About = () => {
@@ -12,7 +11,7 @@ const About = () => {
     >
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-content flex-col justify-center px-6 py-24">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_auto] lg:gap-16">
-          <div className="order-2 lg:order-1">
+          <div className="order-1">
             <p
               className="animate-fade-up mb-3 font-mono text-sm font-medium uppercase tracking-wider text-accent"
               style={{ animationDelay: '0ms' }}
@@ -32,41 +31,33 @@ const About = () => {
               I build distributed systems that scale — from SageMaker evaluation pipelines at
               Amazon to payments microservices at Capital One.
             </p>
-            <p
-              className="animate-fade-up mt-4 text-sm font-medium text-muted"
+            <ul
+              className="animate-fade-up mt-4 flex flex-col gap-1 text-sm font-medium text-muted"
               style={{ animationDelay: '300ms' }}
             >
-              BS CS @ Stony Brook (Magna Cum Laude) · Amazon SDE Intern · GT MS CS Fall 2026
-            </p>
+              <li>BS CS @ Stony Brook (Magna Cum Laude)</li>
+              <li>MS CS @ Georgia Tech (Fall 2026)</li>
+              <li>Amazon SDE Intern</li>
+            </ul>
             <div
               className="animate-fade-up mt-8 flex flex-wrap gap-3"
               style={{ animationDelay: '400ms' }}
             >
-              <Link
-                to="projects"
-                spy
-                smooth
-                offset={SCROLL_OFFSET}
-                duration={500}
-                className="group inline-flex items-center justify-center gap-1.5 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-[color,transform,background-color] hover:bg-accent-hover active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                View Projects
-                <span className="inline-block -translate-x-1 opacity-0 transition-[transform,opacity] duration-200 group-hover:translate-x-0 group-hover:opacity-100 motion-reduce:translate-x-0 motion-reduce:opacity-100">
-                  →
-                </span>
-              </Link>
-              <Button variant="secondary" href={RESUME_URL} target="_blank" rel="noopener noreferrer">
+              <Button variant="primary" href={RESUME_URL} target="_blank" rel="noopener noreferrer">
                 Download Resume
               </Button>
+              <ScrollLink to="experience" variant="secondary" showArrow>
+                View Experience
+              </ScrollLink>
             </div>
           </div>
 
-          <div className="order-1 flex justify-center lg:order-2">
+          <div className="order-2 flex justify-center">
             <div className="group rounded-full ring-4 ring-transparent transition-[box-shadow] duration-300 hover:ring-accent/40 motion-reduce:transition-none">
               <img
                 src={avatar}
                 alt="Zhenbin Lin"
-                className="size-48 rounded-full border-4 border-border object-cover shadow-md sm:size-56 lg:size-64"
+                className="size-40 rounded-full border-4 border-border object-cover shadow-md sm:size-48 lg:size-64"
                 loading="eager"
               />
             </div>
